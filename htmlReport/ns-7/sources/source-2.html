@@ -1,0 +1,186 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > main</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">views.html</a>
+</div>
+
+<h1>Coverage Summary for Class: main (views.html)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+  <tr>
+    <td class="name">main$</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (2/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    78.6%
+  </span>
+  <span class="absValue">
+    (11/14)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (2/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    78.6%
+  </span>
+  <span class="absValue">
+    (11/14)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package views.html
+&nbsp;
+&nbsp;import _root_.play.twirl.api.TwirlFeatureImports._
+&nbsp;import _root_.play.twirl.api.TwirlHelperImports._
+&nbsp;import _root_.play.twirl.api.Html
+&nbsp;import _root_.play.twirl.api.JavaScript
+&nbsp;import _root_.play.twirl.api.Txt
+&nbsp;import _root_.play.twirl.api.Xml
+&nbsp;import models._
+&nbsp;import controllers._
+&nbsp;import play.api.i18n._
+&nbsp;import views.html._
+&nbsp;import play.api.templates.PlayMagic._
+&nbsp;import java.lang._
+&nbsp;import java.util._
+&nbsp;import play.core.j.PlayMagicForJava._
+&nbsp;import play.mvc._
+&nbsp;import play.api.data.Field
+&nbsp;import play.data._
+&nbsp;import play.core.j.PlayFormsMagicForJava._
+&nbsp;import scala.jdk.CollectionConverters._
+&nbsp;
+<b class="fc">&nbsp;object main extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[String,Html,play.twirl.api.HtmlFormat.Appendable] {</b>
+&nbsp;
+&nbsp;  /*
+&nbsp; * This template is called from the `search` template. This template
+&nbsp; * handles the rendering of the page header and body tags. It takes
+&nbsp; * two arguments, a `String` for the title of the page and an `Html`
+&nbsp; * object to insert into the body of the page.
+&nbsp; */
+&nbsp;  def apply/*7.2*/(title: String)(content: Html):play.twirl.api.HtmlFormat.Appendable = {
+<b class="fc">&nbsp;    _display_ {</b>
+&nbsp;      {
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;Seq[Any](format.raw/*8.1*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;&quot;&quot;&quot;),format.raw/*9.1*/(&quot;&quot;&quot;&lt;!DOCTYPE html&gt;</b>
+&nbsp;&lt;html lang=&quot;en&quot;&gt;
+&nbsp;    &lt;head&gt;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*12.62*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*13.9*/(&quot;&quot;&quot;&lt;title&gt;&quot;&quot;&quot;),_display_(/*13.17*/title),format.raw/*13.22*/(&quot;&quot;&quot;&lt;/title&gt;</b>
+<b class="fc">&nbsp;        &lt;link rel=&quot;stylesheet&quot; media=&quot;screen&quot; href=&quot;&quot;&quot;&quot;),_display_(/*14.54*/routes/*14.60*/.Assets.versioned(&quot;stylesheets/main.css&quot;)),format.raw/*14.101*/(&quot;&quot;&quot;&quot;&gt;</b>
+<b class="fc">&nbsp;        &lt;link rel=&quot;shortcut icon&quot; type=&quot;image/png&quot; href=&quot;&quot;&quot;&quot;),_display_(/*15.59*/routes/*15.65*/.Assets.versioned(&quot;images/favicon.png&quot;)),format.raw/*15.104*/(&quot;&quot;&quot;&quot;&gt;</b>
+&nbsp;    &lt;/head&gt;
+&nbsp;    &lt;body&gt;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*19.32*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),_display_(/*20.10*/content),format.raw/*20.17*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*22.9*/(&quot;&quot;&quot;&lt;script src=&quot;&quot;&quot;&quot;),_display_(/*22.23*/routes/*22.29*/.Assets.versioned(&quot;javascripts/main.js&quot;)),format.raw/*22.69*/(&quot;&quot;&quot;&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</b>
+&nbsp;    &lt;/body&gt;
+&nbsp;&lt;/html&gt;
+&nbsp;&quot;&quot;&quot;))
+&nbsp;      }
+&nbsp;    }
+&nbsp;  }
+&nbsp;
+<b class="nc">&nbsp;  def render(title:String,content:Html): play.twirl.api.HtmlFormat.Appendable = apply(title)(content)</b>
+&nbsp;
+<b class="nc">&nbsp;  def f:((String) =&gt; (Html) =&gt; play.twirl.api.HtmlFormat.Appendable) = (title) =&gt; (content) =&gt; apply(title)(content)</b>
+&nbsp;
+<b class="nc">&nbsp;  def ref: this.type = this</b>
+&nbsp;
+&nbsp;}
+&nbsp;
+&nbsp;
+&nbsp;              /*
+&nbsp;                  -- GENERATED --
+&nbsp;                  SOURCE: app/views/main.scala.html
+&nbsp;                  HASH: 9deeee4d263c339c5218ebbeb739e714f9a4ad6d
+&nbsp;                  MATRIX: 1166-&gt;261|1290-&gt;292|1317-&gt;293|1397-&gt;398|1433-&gt;407|1468-&gt;415|1494-&gt;420|1583-&gt;482|1598-&gt;488|1661-&gt;529|1749-&gt;590|1764-&gt;596|1825-&gt;635|1887-&gt;759|1924-&gt;769|1952-&gt;776|1989-&gt;786|2030-&gt;800|2045-&gt;806|2106-&gt;846
+&nbsp;                  LINES: 32-&gt;7|37-&gt;8|38-&gt;9|41-&gt;12|42-&gt;13|42-&gt;13|42-&gt;13|43-&gt;14|43-&gt;14|43-&gt;14|44-&gt;15|44-&gt;15|44-&gt;15|47-&gt;19|48-&gt;20|48-&gt;20|50-&gt;22|50-&gt;22|50-&gt;22|50-&gt;22
+&nbsp;                  -- GENERATED --
+&nbsp;              */
+&nbsp;          
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > videoDetails</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">views.html</a>
+</div>
+
+<h1>Coverage Summary for Class: videoDetails (views.html)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+  <tr>
+    <td class="name">videoDetails$</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/18)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/18)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package views.html
+&nbsp;
+&nbsp;import _root_.play.twirl.api.TwirlFeatureImports._
+&nbsp;import _root_.play.twirl.api.TwirlHelperImports._
+&nbsp;import _root_.play.twirl.api.Html
+&nbsp;import _root_.play.twirl.api.JavaScript
+&nbsp;import _root_.play.twirl.api.Txt
+&nbsp;import _root_.play.twirl.api.Xml
+&nbsp;import models._
+&nbsp;import controllers._
+&nbsp;import play.api.i18n._
+&nbsp;import views.html._
+&nbsp;import play.api.templates.PlayMagic._
+&nbsp;import java.lang._
+&nbsp;import java.util._
+&nbsp;import play.core.j.PlayMagicForJava._
+&nbsp;import play.mvc._
+&nbsp;import play.api.data.Field
+&nbsp;import play.data._
+&nbsp;import play.core.j.PlayFormsMagicForJava._
+&nbsp;import scala.jdk.CollectionConverters._
+&nbsp;
+<b class="nc">&nbsp;object videoDetails extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[Map[String, String],play.twirl.api.HtmlFormat.Appendable] {</b>
+&nbsp;
+&nbsp;  /**/
+&nbsp;  def apply/*1.2*/(videoDetails: Map[String, String]):play.twirl.api.HtmlFormat.Appendable = {
+<b class="nc">&nbsp;    _display_ {</b>
+&nbsp;      {
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;Seq[Any](format.raw/*1.37*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="nc">&nbsp;&quot;&quot;&quot;),format.raw/*3.1*/(&quot;&quot;&quot;&lt;h1&gt;&quot;&quot;&quot;),_display_(/*3.6*/videoDetails/*3.18*/.get(&quot;title&quot;)),format.raw/*3.31*/(&quot;&quot;&quot;&lt;/h1&gt;</b>
+<b class="nc">&nbsp;&lt;p&gt;&quot;&quot;&quot;),_display_(/*4.5*/videoDetails/*4.17*/.get(&quot;description&quot;)),format.raw/*4.36*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+<b class="nc">&nbsp;&lt;p&gt;Likes: &quot;&quot;&quot;),_display_(/*5.12*/videoDetails/*5.24*/.get(&quot;likes&quot;)),format.raw/*5.37*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+<b class="nc">&nbsp;&lt;p&gt;Views: &quot;&quot;&quot;),_display_(/*6.12*/videoDetails/*6.24*/.get(&quot;views&quot;)),format.raw/*6.37*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+&nbsp;
+&nbsp;&lt;h3&gt;Tags:&lt;/h3&gt;
+&nbsp;&lt;ul&gt;
+<b class="nc">&nbsp;    &quot;&quot;&quot;),_display_(/*10.6*/for(tag &lt;- videoDetails.get(&quot;tags&quot;).split(&quot;, &quot;)) yield /*10.54*/ {_display_(Seq[Any](format.raw/*10.56*/(&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;    &quot;&quot;&quot;),format.raw/*11.5*/(&quot;&quot;&quot;&lt;li&gt;&lt;a href=&quot;#&quot; onclick=&quot;getTagDetails(&#39;&quot;&quot;&quot;),_display_(/*11.46*/tag),format.raw/*11.49*/(&quot;&quot;&quot;&#39;)&quot;&gt;&quot;&quot;&quot;),_display_(/*11.54*/tag),format.raw/*11.57*/(&quot;&quot;&quot;&lt;/a&gt;&lt;/li&gt;</b>
+<b class="nc">&nbsp;    &quot;&quot;&quot;)))}),format.raw/*12.6*/(&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;&quot;&quot;&quot;),format.raw/*13.1*/(&quot;&quot;&quot;&lt;/ul&gt;</b>
+&nbsp;
+&nbsp;&lt;script&gt;
+<b class="nc">&nbsp;    function getTagDetails(tag) &quot;&quot;&quot;),format.raw/*16.33*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*16.34*/(&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;        &quot;&quot;&quot;),format.raw/*17.9*/(&quot;&quot;&quot;const message = &quot;&quot;&quot;),format.raw/*17.25*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*17.26*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*17.27*/(&quot;&quot;&quot;action: &quot;getTagDetails&quot;, tag: tag &quot;&quot;&quot;),format.raw/*17.61*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*17.62*/(&quot;&quot;&quot;;</b>
+&nbsp;        webSocket.send(JSON.stringify(message));
+<b class="nc">&nbsp;    &quot;&quot;&quot;),format.raw/*19.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*19.6*/(&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;&quot;&quot;&quot;),format.raw/*20.1*/(&quot;&quot;&quot;&lt;/script&gt;</b>
+&nbsp;&quot;&quot;&quot;))
+&nbsp;      }
+&nbsp;    }
+&nbsp;  }
+&nbsp;
+<b class="nc">&nbsp;  def render(videoDetails:Map[String, String]): play.twirl.api.HtmlFormat.Appendable = apply(videoDetails)</b>
+&nbsp;
+<b class="nc">&nbsp;  def f:((Map[String, String]) =&gt; play.twirl.api.HtmlFormat.Appendable) = (videoDetails) =&gt; apply(videoDetails)</b>
+&nbsp;
+<b class="nc">&nbsp;  def ref: this.type = this</b>
+&nbsp;
+&nbsp;}
+&nbsp;
+&nbsp;
+&nbsp;              /*
+&nbsp;                  -- GENERATED --
+&nbsp;                  SOURCE: app/views/videoDetails.scala.html
+&nbsp;                  HASH: 4ab145525a787b9543ce88a534fdc0694a798846
+&nbsp;                  MATRIX: 927-&gt;1|1057-&gt;36|1087-&gt;40|1117-&gt;45|1137-&gt;57|1170-&gt;70|1206-&gt;81|1226-&gt;93|1265-&gt;112|1308-&gt;129|1328-&gt;141|1361-&gt;154|1404-&gt;171|1424-&gt;183|1457-&gt;196|1518-&gt;231|1582-&gt;279|1622-&gt;281|1655-&gt;287|1723-&gt;328|1747-&gt;331|1779-&gt;336|1803-&gt;339|1849-&gt;355|1878-&gt;357|1957-&gt;408|1986-&gt;409|2023-&gt;419|2067-&gt;435|2096-&gt;436|2125-&gt;437|2187-&gt;471|2216-&gt;472|2300-&gt;529|2328-&gt;530|2357-&gt;532
+&nbsp;                  LINES: 27-&gt;1|32-&gt;1|34-&gt;3|34-&gt;3|34-&gt;3|34-&gt;3|35-&gt;4|35-&gt;4|35-&gt;4|36-&gt;5|36-&gt;5|36-&gt;5|37-&gt;6|37-&gt;6|37-&gt;6|41-&gt;10|41-&gt;10|41-&gt;10|42-&gt;11|42-&gt;11|42-&gt;11|42-&gt;11|42-&gt;11|43-&gt;12|44-&gt;13|47-&gt;16|47-&gt;16|48-&gt;17|48-&gt;17|48-&gt;17|48-&gt;17|48-&gt;17|48-&gt;17|50-&gt;19|50-&gt;19|51-&gt;20
+&nbsp;                  -- GENERATED --
+&nbsp;              */
+&nbsp;          
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

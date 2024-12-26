@@ -1,0 +1,220 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ReverseYouTubeController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">controllers.javascript</a>
+</div>
+
+<h1>Coverage Summary for Class: ReverseYouTubeController (controllers.javascript)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReverseYouTubeController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;// @GENERATOR:play-routes-compiler
+&nbsp;// @SOURCE:conf/routes
+&nbsp;
+&nbsp;import play.api.routing.JavaScriptReverseRoute
+&nbsp;
+&nbsp;
+&nbsp;import _root_.controllers.Assets.Asset
+&nbsp;import _root_.play.libs.F
+&nbsp;
+&nbsp;// @LINE:6
+&nbsp;package controllers.javascript {
+&nbsp;
+&nbsp;  // @LINE:6
+<b class="nc">&nbsp;  class ReverseYouTubeController(_prefix: =&gt; String) {</b>
+&nbsp;
+&nbsp;    def _defaultPrefix: String = {
+<b class="nc">&nbsp;      if (_prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;  
+&nbsp;    // @LINE:19
+<b class="nc">&nbsp;    def fetchChannelProfile: JavaScriptReverseRoute = JavaScriptReverseRoute(</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController.fetchChannelProfile&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot;</b>
+&nbsp;        function(channelId0) {
+<b class="nc">&nbsp;          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;channel/&quot; + encodeURIComponent((&quot;&quot;&quot; + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + &quot;&quot;&quot;)(&quot;channelId&quot;, channelId0))})</b>
+&nbsp;        }
+&nbsp;      &quot;&quot;&quot;
+&nbsp;    )
+&nbsp;  
+&nbsp;    // @LINE:15
+<b class="nc">&nbsp;    def getTagPage: JavaScriptReverseRoute = JavaScriptReverseRoute(</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController.getTagPage&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot;</b>
+&nbsp;        function(tagName0) {
+<b class="nc">&nbsp;          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;tag/&quot; + encodeURIComponent((&quot;&quot;&quot; + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + &quot;&quot;&quot;)(&quot;tagName&quot;, tagName0))})</b>
+&nbsp;        }
+&nbsp;      &quot;&quot;&quot;
+&nbsp;    )
+&nbsp;  
+&nbsp;    // @LINE:21
+<b class="nc">&nbsp;    def getWordStats: JavaScriptReverseRoute = JavaScriptReverseRoute(</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController.getWordStats&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot;</b>
+&nbsp;        function(query0) {
+<b class="nc">&nbsp;          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;wordStats/&quot; + encodeURIComponent((&quot;&quot;&quot; + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + &quot;&quot;&quot;)(&quot;query&quot;, query0))})</b>
+&nbsp;        }
+&nbsp;      &quot;&quot;&quot;
+&nbsp;    )
+&nbsp;  
+&nbsp;    // @LINE:9
+<b class="nc">&nbsp;    def ws: JavaScriptReverseRoute = JavaScriptReverseRoute(</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController.ws&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot;</b>
+&nbsp;        function() {
+<b class="nc">&nbsp;          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;ws&quot;})</b>
+&nbsp;        }
+&nbsp;      &quot;&quot;&quot;
+&nbsp;    )
+&nbsp;  
+&nbsp;    // @LINE:16
+<b class="nc">&nbsp;    def getVideosByTag: JavaScriptReverseRoute = JavaScriptReverseRoute(</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController.getVideosByTag&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot;</b>
+&nbsp;        function(tagName0) {
+<b class="nc">&nbsp;          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;tag/videos/&quot; + encodeURIComponent((&quot;&quot;&quot; + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + &quot;&quot;&quot;)(&quot;tagName&quot;, tagName0))})</b>
+&nbsp;        }
+&nbsp;      &quot;&quot;&quot;
+&nbsp;    )
+&nbsp;  
+&nbsp;    // @LINE:6
+<b class="nc">&nbsp;    def search: JavaScriptReverseRoute = JavaScriptReverseRoute(</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController.search&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot;</b>
+&nbsp;        function() {
+<b class="nc">&nbsp;          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + &quot;&quot;&quot;&quot;})</b>
+&nbsp;        }
+&nbsp;      &quot;&quot;&quot;
+&nbsp;    )
+&nbsp;  
+&nbsp;  }
+&nbsp;
+&nbsp;  // @LINE:12
+&nbsp;  class ReverseAssets(_prefix: =&gt; String) {
+&nbsp;
+&nbsp;    def _defaultPrefix: String = {
+&nbsp;      if (_prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;
+&nbsp;    }
+&nbsp;
+&nbsp;  
+&nbsp;    // @LINE:12
+&nbsp;    def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
+&nbsp;      &quot;controllers.Assets.versioned&quot;,
+&nbsp;      &quot;&quot;&quot;
+&nbsp;        function(file1) {
+&nbsp;          return _wA({method:&quot;GET&quot;, url:&quot;&quot;&quot;&quot; + _prefix + { _defaultPrefix } + &quot;&quot;&quot;&quot; + &quot;assets/&quot; + (&quot;&quot;&quot; + implicitly[play.api.mvc.PathBindable[Asset]].javascriptUnbind + &quot;&quot;&quot;)(&quot;file&quot;, file1)})
+&nbsp;        }
+&nbsp;      &quot;&quot;&quot;
+&nbsp;    )
+&nbsp;  
+&nbsp;  }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

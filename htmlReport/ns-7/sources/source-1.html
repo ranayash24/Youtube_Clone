@@ -1,0 +1,318 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > channelProfile</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">views.html</a>
+</div>
+
+<h1>Coverage Summary for Class: channelProfile (views.html)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+  <tr>
+    <td class="name">channelProfile$</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    39.1%
+  </span>
+  <span class="absValue">
+    (18/46)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.3%
+  </span>
+  <span class="absValue">
+    (64/75)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    39.1%
+  </span>
+  <span class="absValue">
+    (18/46)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.3%
+  </span>
+  <span class="absValue">
+    (64/75)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package views.html
+&nbsp;
+&nbsp;import _root_.play.twirl.api.TwirlFeatureImports._
+&nbsp;import _root_.play.twirl.api.TwirlHelperImports._
+&nbsp;import _root_.play.twirl.api.Html
+&nbsp;import _root_.play.twirl.api.JavaScript
+&nbsp;import _root_.play.twirl.api.Txt
+&nbsp;import _root_.play.twirl.api.Xml
+&nbsp;import models._
+&nbsp;import controllers._
+&nbsp;import play.api.i18n._
+&nbsp;import views.html._
+&nbsp;import play.api.templates.PlayMagic._
+&nbsp;import java.lang._
+&nbsp;import java.util._
+&nbsp;import play.core.j.PlayMagicForJava._
+&nbsp;import play.mvc._
+&nbsp;import play.api.data.Field
+&nbsp;import play.data._
+&nbsp;import play.core.j.PlayFormsMagicForJava._
+&nbsp;import scala.jdk.CollectionConverters._
+&nbsp;
+<b class="fc">&nbsp;object channelProfile extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[com.fasterxml.jackson.databind.JsonNode,play.twirl.api.HtmlFormat.Appendable] {</b>
+&nbsp;
+&nbsp;  /**/
+&nbsp;  def apply/*1.2*/(channelProfile: com.fasterxml.jackson.databind.JsonNode):play.twirl.api.HtmlFormat.Appendable = {
+<b class="fc">&nbsp;    _display_ {</b>
+&nbsp;      {
+&nbsp;/*3.2*/import scala.jdk.CollectionConverters._
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;Seq[Any](format.raw/*1.59*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;&quot;&quot;&quot;),format.raw/*4.1*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;&quot;&quot;&quot;),format.raw/*5.1*/(&quot;&quot;&quot;&lt;!DOCTYPE html&gt;</b>
+&nbsp;&lt;html lang=&quot;en&quot;&gt;
+&nbsp;&lt;head&gt;
+&nbsp;  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&nbsp;  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+<b class="pc">&nbsp;  &lt;title&gt;&quot;&quot;&quot;),_display_(if(channelProfile != null &amp;&amp; channelProfile.get(&quot;title&quot;) != null)/*10.76*/ {_display_(Seq[Any](format.raw/*10.78*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*10.80*/channelProfile/*10.94*/.get(&quot;title&quot;).asText()),format.raw/*10.116*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*10.118*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*10.119*/(&quot;&quot;&quot;- Channel Profile&lt;/title&gt;</b>
+<b class="fc">&nbsp;  &lt;link rel=&quot;stylesheet&quot; href=&quot;&quot;&quot;&quot;),_display_(/*11.33*/routes/*11.39*/.Assets.versioned(&quot;stylesheets/main.css&quot;)),format.raw/*11.80*/(&quot;&quot;&quot;&quot;&gt;</b>
+&nbsp;  &lt;style&gt;
+<b class="fc">&nbsp;    body &quot;&quot;&quot;),format.raw/*13.10*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*13.11*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*14.9*/(&quot;&quot;&quot;font-family: Arial, sans-serif;</b>
+&nbsp;        background-color: #f9f9f9;
+&nbsp;        margin: 0;
+&nbsp;        padding: 0;
+&nbsp;        text-align: center;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*19.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*19.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*21.5*/(&quot;&quot;&quot;.channel-profile &quot;&quot;&quot;),format.raw/*21.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*21.23*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*22.9*/(&quot;&quot;&quot;max-width: 800px;</b>
+&nbsp;        margin: 20px auto;
+&nbsp;        background: #fff;
+&nbsp;        border-radius: 10px;
+&nbsp;        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+&nbsp;        padding: 20px;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*28.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*28.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*30.5*/(&quot;&quot;&quot;.channel-header &quot;&quot;&quot;),format.raw/*30.21*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*30.22*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*31.9*/(&quot;&quot;&quot;text-align: center;</b>
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*32.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*32.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*34.5*/(&quot;&quot;&quot;.channel-header img &quot;&quot;&quot;),format.raw/*34.25*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*34.26*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*35.9*/(&quot;&quot;&quot;width: 150px;</b>
+&nbsp;        height: 150px;
+&nbsp;        border-radius: 50%;
+&nbsp;        margin-bottom: 15px;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*39.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*39.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*41.5*/(&quot;&quot;&quot;.channel-header h1 &quot;&quot;&quot;),format.raw/*41.24*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*41.25*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*42.9*/(&quot;&quot;&quot;font-size: 24px;</b>
+&nbsp;        color: #333;
+&nbsp;        margin: 0;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*45.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*45.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*47.5*/(&quot;&quot;&quot;.channel-header p &quot;&quot;&quot;),format.raw/*47.23*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*47.24*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*48.9*/(&quot;&quot;&quot;color: #555;</b>
+&nbsp;        margin: 5px 0;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*50.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*50.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*52.5*/(&quot;&quot;&quot;.statistics &quot;&quot;&quot;),format.raw/*52.17*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*52.18*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*53.9*/(&quot;&quot;&quot;margin-top: 20px;</b>
+&nbsp;        text-align: left;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*55.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*55.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*57.5*/(&quot;&quot;&quot;.statistics p &quot;&quot;&quot;),format.raw/*57.19*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*57.20*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*58.9*/(&quot;&quot;&quot;font-size: 16px;</b>
+&nbsp;        margin: 5px 0;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*60.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*60.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*62.5*/(&quot;&quot;&quot;.recent-videos &quot;&quot;&quot;),format.raw/*62.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*62.21*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*63.9*/(&quot;&quot;&quot;margin-top: 20px;</b>
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*64.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*64.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*66.5*/(&quot;&quot;&quot;.recent-videos h2 &quot;&quot;&quot;),format.raw/*66.23*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*66.24*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*67.9*/(&quot;&quot;&quot;font-size: 20px;</b>
+&nbsp;        color: #e74c3c;
+&nbsp;        margin-bottom: 15px;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*70.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*70.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*72.5*/(&quot;&quot;&quot;.video-item &quot;&quot;&quot;),format.raw/*72.17*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*72.18*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*73.9*/(&quot;&quot;&quot;display: flex;</b>
+&nbsp;        align-items: center;
+&nbsp;        margin-bottom: 20px;
+&nbsp;        text-align: left;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*77.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*77.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*79.5*/(&quot;&quot;&quot;.video-item img &quot;&quot;&quot;),format.raw/*79.21*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*79.22*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*80.9*/(&quot;&quot;&quot;width: 120px;</b>
+&nbsp;        height: auto;
+&nbsp;        border-radius: 5px;
+&nbsp;        margin-right: 15px;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*84.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*84.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*86.5*/(&quot;&quot;&quot;.video-details &quot;&quot;&quot;),format.raw/*86.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*86.21*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*87.9*/(&quot;&quot;&quot;flex-grow: 1;</b>
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*88.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*88.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*90.5*/(&quot;&quot;&quot;.video-details a &quot;&quot;&quot;),format.raw/*90.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*90.23*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*91.9*/(&quot;&quot;&quot;text-decoration: none;</b>
+&nbsp;        color: #3498db;
+&nbsp;        font-weight: bold;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*94.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*94.6*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*96.5*/(&quot;&quot;&quot;.video-details a:hover &quot;&quot;&quot;),format.raw/*96.28*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*96.29*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*97.9*/(&quot;&quot;&quot;text-decoration: underline;</b>
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*98.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*98.6*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;  &quot;&quot;&quot;),format.raw/*99.3*/(&quot;&quot;&quot;&lt;/style&gt;</b>
+&nbsp;&lt;/head&gt;
+&nbsp;&lt;body&gt;
+&nbsp;&lt;div class=&quot;channel-profile&quot;&gt;
+&nbsp;  &lt;div class=&quot;channel-header&quot;&gt;
+<b class="pc">&nbsp;    &lt;img src=&quot;&quot;&quot;&quot;),_display_(if(channelProfile != null &amp;&amp; channelProfile.get(&quot;thumbnail&quot;) != null)/*104.85*/ {_display_(Seq[Any](format.raw/*104.87*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*104.89*/channelProfile/*104.103*/.get(&quot;thumbnail&quot;).asText()),format.raw/*104.129*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*104.131*/(&quot;&quot;&quot;&quot;</b>
+<b class="pc">&nbsp;    alt=&quot;&quot;&quot;&quot;),_display_(if(channelProfile != null &amp;&amp; channelProfile.get(&quot;title&quot;) != null)/*105.76*/ {_display_(Seq[Any](format.raw/*105.78*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*105.80*/channelProfile/*105.94*/.get(&quot;title&quot;).asText()),format.raw/*105.116*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*105.118*/(&quot;&quot;&quot;&quot;&gt;</b>
+<b class="pc">&nbsp;    &lt;h1&gt;&quot;&quot;&quot;),_display_(if(channelProfile != null &amp;&amp; channelProfile.get(&quot;title&quot;) != null)/*106.75*/ {_display_(Seq[Any](format.raw/*106.77*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*106.79*/channelProfile/*106.93*/.get(&quot;title&quot;).asText()),format.raw/*106.115*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*106.117*/(&quot;&quot;&quot;&lt;/h1&gt;</b>
+<b class="pc">&nbsp;    &lt;p&gt;&quot;&quot;&quot;),_display_(if(channelProfile != null &amp;&amp; channelProfile.get(&quot;description&quot;) != null)/*107.80*/ {_display_(Seq[Any](format.raw/*107.82*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*107.84*/channelProfile/*107.98*/.get(&quot;description&quot;).asText()),format.raw/*107.126*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*107.128*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+&nbsp;  &lt;/div&gt;
+&nbsp;  &lt;div class=&quot;statistics&quot;&gt;
+<b class="pc">&nbsp;    &lt;p&gt;&lt;strong&gt;Subscribers:&lt;/strong&gt; &quot;&quot;&quot;),_display_(if(channelProfile != null &amp;&amp; channelProfile.get(&quot;subscriberCount&quot;) != null)/*110.114*/ {_display_(Seq[Any](format.raw/*110.116*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*110.118*/channelProfile/*110.132*/.get(&quot;subscriberCount&quot;).asText()),format.raw/*110.164*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*110.166*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+<b class="pc">&nbsp;    &lt;p&gt;&lt;strong&gt;Total Views:&lt;/strong&gt; &quot;&quot;&quot;),_display_(if(channelProfile != null &amp;&amp; channelProfile.get(&quot;totalViews&quot;) != null)/*111.109*/ {_display_(Seq[Any](format.raw/*111.111*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*111.113*/channelProfile/*111.127*/.get(&quot;totalViews&quot;).asText()),format.raw/*111.154*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*111.156*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+<b class="pc">&nbsp;    &lt;p&gt;&lt;strong&gt;Videos:&lt;/strong&gt; &quot;&quot;&quot;),_display_(if(channelProfile != null &amp;&amp; channelProfile.get(&quot;videoCount&quot;) != null)/*112.104*/ {_display_(Seq[Any](format.raw/*112.106*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*112.108*/channelProfile/*112.122*/.get(&quot;videoCount&quot;).asText()),format.raw/*112.149*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*112.151*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+&nbsp;  &lt;/div&gt;
+&nbsp;  &lt;div class=&quot;recent-videos&quot;&gt;
+&nbsp;    &lt;h2&gt;Latest 10 Videos&lt;/h2&gt;
+<b class="pc">&nbsp;    &quot;&quot;&quot;),_display_(if(channelProfile != null &amp;&amp; channelProfile.get(&quot;recentVideos&quot;) != null)/*116.78*/ {_display_(Seq[Any](format.raw/*116.80*/(&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;    &quot;&quot;&quot;),_display_(/*117.6*/for(video &lt;- channelProfile.get(&quot;recentVideos&quot;).elements().asScala) yield /*117.73*/ {_display_(Seq[Any](format.raw/*117.75*/(&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;    &quot;&quot;&quot;),format.raw/*118.5*/(&quot;&quot;&quot;&lt;div class=&quot;video-item&quot;&gt;</b>
+<b class="nc">&nbsp;      &lt;img src=&quot;&quot;&quot;&quot;),_display_(if(video.get(&quot;thumbnailUrl&quot;) != null)/*119.55*/ {_display_(Seq[Any](format.raw/*119.57*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*119.59*/video/*119.64*/.get(&quot;thumbnailUrl&quot;).asText()),format.raw/*119.93*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*119.95*/(&quot;&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;      alt=&quot;&quot;&quot;&quot;),_display_(if(video.get(&quot;title&quot;) != null)/*120.43*/ {_display_(Seq[Any](format.raw/*120.45*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*120.47*/video/*120.52*/.get(&quot;title&quot;).asText()),format.raw/*120.74*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*120.76*/(&quot;&quot;&quot;&quot;&gt;</b>
+&nbsp;      &lt;div class=&quot;video-details&quot;&gt;
+<b class="nc">&nbsp;        &lt;a href=&quot;https://www.youtube.com/watch?v=&quot;&quot;&quot;),_display_(if(video.get(&quot;videoId&quot;) != null)/*122.83*/ {_display_(Seq[Any](format.raw/*122.85*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*122.87*/video/*122.92*/.get(&quot;videoId&quot;).asText()),format.raw/*122.116*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*122.118*/(&quot;&quot;&quot;&quot; target=&quot;_blank&quot;&gt;</b>
+<b class="nc">&nbsp;        &quot;&quot;&quot;),_display_(if(video.get(&quot;title&quot;) != null)/*123.40*/ {_display_(Seq[Any](format.raw/*123.42*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*123.44*/video/*123.49*/.get(&quot;title&quot;).asText()),format.raw/*123.71*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*123.73*/(&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;        &quot;&quot;&quot;),format.raw/*124.9*/(&quot;&quot;&quot;&lt;/a&gt;</b>
+<b class="nc">&nbsp;        &lt;p&gt;&quot;&quot;&quot;),_display_(if(video.get(&quot;description&quot;) != null)/*125.49*/ {_display_(Seq[Any](format.raw/*125.51*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*125.53*/video/*125.58*/.get(&quot;description&quot;).asText()),format.raw/*125.86*/(&quot;&quot;&quot; &quot;&quot;&quot;)))} else {null} ),format.raw/*125.88*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+&nbsp;      &lt;/div&gt;
+&nbsp;    &lt;/div&gt;
+<b class="nc">&nbsp;    &quot;&quot;&quot;)))}),format.raw/*128.6*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;    &quot;&quot;&quot;)))} else {null} ),format.raw/*129.6*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;  &quot;&quot;&quot;),format.raw/*130.3*/(&quot;&quot;&quot;&lt;/div&gt;</b>
+&nbsp;&lt;/div&gt;
+&nbsp;&lt;/body&gt;
+&nbsp;&lt;/html&gt;
+&nbsp;&quot;&quot;&quot;))
+&nbsp;      }
+&nbsp;    }
+&nbsp;  }
+&nbsp;
+<b class="fc">&nbsp;  def render(channelProfile:com.fasterxml.jackson.databind.JsonNode): play.twirl.api.HtmlFormat.Appendable = apply(channelProfile)</b>
+&nbsp;
+<b class="nc">&nbsp;  def f:((com.fasterxml.jackson.databind.JsonNode) =&gt; play.twirl.api.HtmlFormat.Appendable) = (channelProfile) =&gt; apply(channelProfile)</b>
+&nbsp;
+<b class="nc">&nbsp;  def ref: this.type = this</b>
+&nbsp;
+&nbsp;}
+&nbsp;
+&nbsp;
+&nbsp;              /*
+&nbsp;                  -- GENERATED --
+&nbsp;                  SOURCE: app/views/channelProfile.scala.html
+&nbsp;                  HASH: 67fede82b20a9b1c75dc9e27a673a883a0576db6
+&nbsp;                  MATRIX: 949-&gt;1|1079-&gt;63|1148-&gt;58|1178-&gt;104|1206-&gt;106|1451-&gt;324|1491-&gt;326|1520-&gt;328|1543-&gt;342|1587-&gt;364|1634-&gt;366|1664-&gt;367|1750-&gt;426|1765-&gt;432|1827-&gt;473|1879-&gt;497|1908-&gt;498|1945-&gt;508|2115-&gt;651|2143-&gt;652|2178-&gt;660|2223-&gt;677|2252-&gt;678|2289-&gt;688|2499-&gt;871|2527-&gt;872|2562-&gt;880|2606-&gt;896|2635-&gt;897|2672-&gt;907|2724-&gt;932|2752-&gt;933|2787-&gt;941|2835-&gt;961|2864-&gt;962|2901-&gt;972|3030-&gt;1074|3058-&gt;1075|3093-&gt;1083|3140-&gt;1102|3169-&gt;1103|3206-&gt;1113|3297-&gt;1177|3325-&gt;1178|3360-&gt;1186|3406-&gt;1204|3435-&gt;1205|3472-&gt;1215|3541-&gt;1257|3569-&gt;1258|3604-&gt;1266|3644-&gt;1278|3673-&gt;1279|3710-&gt;1289|3787-&gt;1339|3815-&gt;1340|3850-&gt;1348|3892-&gt;1362|3921-&gt;1363|3958-&gt;1373|4031-&gt;1419|4059-&gt;1420|4094-&gt;1428|4137-&gt;1443|4166-&gt;1444|4203-&gt;1454|4253-&gt;1477|4281-&gt;1478|4316-&gt;1486|4362-&gt;1504|4391-&gt;1505|4428-&gt;1515|4532-&gt;1592|4560-&gt;1593|4595-&gt;1601|4635-&gt;1613|4664-&gt;1614|4701-&gt;1624|4835-&gt;1731|4863-&gt;1732|4898-&gt;1740|4942-&gt;1756|4971-&gt;1757|5008-&gt;1767|5135-&gt;1867|5163-&gt;1868|5198-&gt;1876|5241-&gt;1891|5270-&gt;1892|5307-&gt;1902|5353-&gt;1921|5381-&gt;1922|5416-&gt;1930|5461-&gt;1947|5490-&gt;1948|5527-&gt;1958|5635-&gt;2039|5663-&gt;2040|5698-&gt;2048|5749-&gt;2071|5778-&gt;2072|5815-&gt;2082|5875-&gt;2115|5903-&gt;2116|5934-&gt;2120|6136-&gt;2294|6177-&gt;2296|6207-&gt;2298|6232-&gt;2312|6281-&gt;2338|6329-&gt;2340|6435-&gt;2418|6476-&gt;2420|6506-&gt;2422|6530-&gt;2436|6575-&gt;2458|6623-&gt;2460|6729-&gt;2538|6770-&gt;2540|6800-&gt;2542|6824-&gt;2556|6869-&gt;2578|6917-&gt;2580|7031-&gt;2666|7072-&gt;2668|7102-&gt;2670|7126-&gt;2684|7177-&gt;2712|7225-&gt;2714|7411-&gt;2871|7453-&gt;2873|7484-&gt;2875|7509-&gt;2889|7564-&gt;2921|7612-&gt;2923|7755-&gt;3037|7797-&gt;3039|7828-&gt;3041|7853-&gt;3055|7903-&gt;3082|7951-&gt;3084|8089-&gt;3193|8131-&gt;3195|8162-&gt;3197|8187-&gt;3211|8237-&gt;3238|8285-&gt;3240|8468-&gt;3395|8509-&gt;3397|8543-&gt;3404|8627-&gt;3471|8668-&gt;3473|8702-&gt;3479|8810-&gt;3559|8851-&gt;3561|8881-&gt;3563|8896-&gt;3568|8947-&gt;3597|8994-&gt;3599|9067-&gt;3644|9108-&gt;3646|9138-&gt;3648|9153-&gt;3653|9197-&gt;3675|9244-&gt;3677|9393-&gt;3798|9434-&gt;3800|9464-&gt;3802|9479-&gt;3807|9526-&gt;3831|9574-&gt;3833|9661-&gt;3892|9702-&gt;3894|9732-&gt;3896|9747-&gt;3901|9791-&gt;3923|9838-&gt;3925|9876-&gt;3935|9958-&gt;3989|9999-&gt;3991|10029-&gt;3993|10044-&gt;3998|10094-&gt;4026|10141-&gt;4028|10209-&gt;4065|10260-&gt;4072|10292-&gt;4076
+&nbsp;                  LINES: 27-&gt;1|30-&gt;3|33-&gt;1|35-&gt;4|36-&gt;5|41-&gt;10|41-&gt;10|41-&gt;10|41-&gt;10|41-&gt;10|41-&gt;10|41-&gt;10|42-&gt;11|42-&gt;11|42-&gt;11|44-&gt;13|44-&gt;13|45-&gt;14|50-&gt;19|50-&gt;19|52-&gt;21|52-&gt;21|52-&gt;21|53-&gt;22|59-&gt;28|59-&gt;28|61-&gt;30|61-&gt;30|61-&gt;30|62-&gt;31|63-&gt;32|63-&gt;32|65-&gt;34|65-&gt;34|65-&gt;34|66-&gt;35|70-&gt;39|70-&gt;39|72-&gt;41|72-&gt;41|72-&gt;41|73-&gt;42|76-&gt;45|76-&gt;45|78-&gt;47|78-&gt;47|78-&gt;47|79-&gt;48|81-&gt;50|81-&gt;50|83-&gt;52|83-&gt;52|83-&gt;52|84-&gt;53|86-&gt;55|86-&gt;55|88-&gt;57|88-&gt;57|88-&gt;57|89-&gt;58|91-&gt;60|91-&gt;60|93-&gt;62|93-&gt;62|93-&gt;62|94-&gt;63|95-&gt;64|95-&gt;64|97-&gt;66|97-&gt;66|97-&gt;66|98-&gt;67|101-&gt;70|101-&gt;70|103-&gt;72|103-&gt;72|103-&gt;72|104-&gt;73|108-&gt;77|108-&gt;77|110-&gt;79|110-&gt;79|110-&gt;79|111-&gt;80|115-&gt;84|115-&gt;84|117-&gt;86|117-&gt;86|117-&gt;86|118-&gt;87|119-&gt;88|119-&gt;88|121-&gt;90|121-&gt;90|121-&gt;90|122-&gt;91|125-&gt;94|125-&gt;94|127-&gt;96|127-&gt;96|127-&gt;96|128-&gt;97|129-&gt;98|129-&gt;98|130-&gt;99|135-&gt;104|135-&gt;104|135-&gt;104|135-&gt;104|135-&gt;104|135-&gt;104|136-&gt;105|136-&gt;105|136-&gt;105|136-&gt;105|136-&gt;105|136-&gt;105|137-&gt;106|137-&gt;106|137-&gt;106|137-&gt;106|137-&gt;106|137-&gt;106|138-&gt;107|138-&gt;107|138-&gt;107|138-&gt;107|138-&gt;107|138-&gt;107|141-&gt;110|141-&gt;110|141-&gt;110|141-&gt;110|141-&gt;110|141-&gt;110|142-&gt;111|142-&gt;111|142-&gt;111|142-&gt;111|142-&gt;111|142-&gt;111|143-&gt;112|143-&gt;112|143-&gt;112|143-&gt;112|143-&gt;112|143-&gt;112|147-&gt;116|147-&gt;116|148-&gt;117|148-&gt;117|148-&gt;117|149-&gt;118|150-&gt;119|150-&gt;119|150-&gt;119|150-&gt;119|150-&gt;119|150-&gt;119|151-&gt;120|151-&gt;120|151-&gt;120|151-&gt;120|151-&gt;120|151-&gt;120|153-&gt;122|153-&gt;122|153-&gt;122|153-&gt;122|153-&gt;122|153-&gt;122|154-&gt;123|154-&gt;123|154-&gt;123|154-&gt;123|154-&gt;123|154-&gt;123|155-&gt;124|156-&gt;125|156-&gt;125|156-&gt;125|156-&gt;125|156-&gt;125|156-&gt;125|159-&gt;128|160-&gt;129|161-&gt;130
+&nbsp;                  -- GENERATED --
+&nbsp;              */
+&nbsp;          
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

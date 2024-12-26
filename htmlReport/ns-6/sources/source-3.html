@@ -1,0 +1,273 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > SentimentAnalyser</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">utils</a>
+</div>
+
+<h1>Coverage Summary for Class: SentimentAnalyser (utils)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SentimentAnalyser</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    71.4%
+  </span>
+  <span class="absValue">
+    (20/28)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86.5%
+  </span>
+  <span class="absValue">
+    (45/52)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package utils;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.nio.file.Files;
+&nbsp;import java.nio.file.Paths;
+&nbsp;import java.util.Collections;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;/**
+&nbsp; * Utility class for analyzing the sentiment of text descriptions.
+&nbsp; *
+&nbsp; * &lt;p&gt;This class provides methods to determine if a description or a list of descriptions
+&nbsp; * is overall happy, sad, or neutral based on the occurrence of predefined keywords.&lt;/p&gt;
+&nbsp; *
+&nbsp; * &lt;p&gt;Sentiment is determined by a 70% threshold rule for the counts of happy and sad keywords.&lt;/p&gt;
+&nbsp; *
+&nbsp; * &lt;p&gt;Keyword lists are loaded from external files located in the {@code conf} directory.&lt;/p&gt;
+&nbsp; *
+&nbsp; * @author Devang
+&nbsp; */
+&nbsp;public class SentimentAnalyser {
+&nbsp;
+&nbsp;    private  final List&lt;String&gt; HAPPY_KEYWORDS;
+&nbsp;    private  final List&lt;String&gt; SAD_KEYWORDS;
+&nbsp;
+&nbsp;    // Constructor for testing purposes
+<b class="fc">&nbsp;    public SentimentAnalyser(List&lt;String&gt; happyKeywords, List&lt;String&gt; sadKeywords) {</b>
+<b class="fc">&nbsp;        this.HAPPY_KEYWORDS = happyKeywords;</b>
+<b class="fc">&nbsp;        this.SAD_KEYWORDS = sadKeywords;</b>
+&nbsp;    }
+&nbsp;    // Default constructor for production usage
+<b class="fc">&nbsp;    public SentimentAnalyser() {</b>
+<b class="fc">&nbsp;        this.HAPPY_KEYWORDS = loadKeywordsFromFile(&quot;conf/happy_keywords&quot;);</b>
+<b class="fc">&nbsp;        this.SAD_KEYWORDS = loadKeywordsFromFile(&quot;conf/sad_keywords&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Loads keywords from a specified text file.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;Each line in the file is treated as a separate keyword.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * @param filePath the path to the text file containing keywords, one per line
+&nbsp;     * @return a list of keywords loaded from the file, or an empty list if an error occurs
+&nbsp;     */
+&nbsp;    protected static List&lt;String&gt; loadKeywordsFromFile(String filePath) {
+&nbsp;        try {
+<b class="fc">&nbsp;            return Files.readAllLines(Paths.get(filePath));</b>
+<b class="fc">&nbsp;        } catch (IOException e) {</b>
+<b class="fc">&nbsp;            e.printStackTrace();</b>
+<b class="fc">&nbsp;            System.err.println(&quot;Error loading keywords from &quot; + filePath + &quot;, returning empty list.&quot;);</b>
+<b class="fc">&nbsp;            return Collections.emptyList();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Analyzes the sentiment of a single description.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;This method counts all occurrences of happy and sad keywords in the description
+&nbsp;     * and determines the sentiment based on a 70% threshold rule.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * @param description the text description to analyze
+&nbsp;     * @return &quot;happy&quot; if the sentiment is predominantly positive, &quot;sad&quot; if predominantly negative,
+&nbsp;     *         or &quot;neutral&quot; if neither is predominant
+&nbsp;     */
+&nbsp;    public String analyzeDescription(String description) {
+<b class="fc">&nbsp;        if (description == null || description.isEmpty()) {</b>
+<b class="fc">&nbsp;            return &quot;:-|&quot;;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        String lowerCaseDescription = description.toLowerCase();</b>
+&nbsp;
+&nbsp;        // Count total occurrences of happy and sad keywords
+<b class="fc">&nbsp;        long happyCount = HAPPY_KEYWORDS.stream()</b>
+<b class="fc">&nbsp;                .mapToLong(keyword -&gt; countOccurrences(lowerCaseDescription, keyword))</b>
+<b class="fc">&nbsp;                .sum();</b>
+&nbsp;
+<b class="fc">&nbsp;        long sadCount = SAD_KEYWORDS.stream()</b>
+<b class="fc">&nbsp;                .mapToLong(keyword -&gt; countOccurrences(lowerCaseDescription, keyword))</b>
+<b class="fc">&nbsp;                .sum();</b>
+&nbsp;
+&nbsp;        // Determine sentiment based on the 70% threshold rule
+<b class="fc">&nbsp;        long totalCount = happyCount + sadCount;</b>
+<b class="fc">&nbsp;        if (totalCount &gt; 0) {</b>
+<b class="fc">&nbsp;            double happyPercentage = (double) happyCount / totalCount;</b>
+<b class="fc">&nbsp;            if (happyPercentage &gt; 0.7) {</b>
+<b class="fc">&nbsp;                return &quot;:-)&quot;;</b>
+<b class="fc">&nbsp;            } else if (happyPercentage &lt; 0.3) {</b>
+<b class="fc">&nbsp;                return &quot;:-(&quot;;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return &quot;:-|&quot;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Analyzes the overall sentiment of a list of descriptions.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;This method aggregates individual sentiments from each description and determines
+&nbsp;     * the overall sentiment based on a 70% threshold rule.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * @param descriptions a list of text descriptions to analyze
+&nbsp;     * @return &quot;happy&quot; if the overall sentiment is predominantly positive, &quot;sad&quot; if predominantly negative,
+&nbsp;     *         or &quot;neutral&quot; if neither is predominant
+&nbsp;     */
+&nbsp;    public String analyzeOverallSentiment(List&lt;String&gt; descriptions) {
+<b class="pc">&nbsp;        if (descriptions == null || descriptions.isEmpty()) {</b>
+<b class="fc">&nbsp;            return &quot;:-|&quot;; // Default sentiment when no descriptions are provided</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        long happyCount = 0;</b>
+<b class="fc">&nbsp;        long sadCount = 0;</b>
+&nbsp;
+&nbsp;        // Analyze each description individually and tally results
+<b class="fc">&nbsp;        for (String description : descriptions) {</b>
+<b class="fc">&nbsp;            String sentiment = analyzeDescription(description);</b>
+<b class="pc">&nbsp;            if (&quot;happy&quot;.equals(sentiment)) {</b>
+<b class="nc">&nbsp;                happyCount++;</b>
+<b class="pc">&nbsp;            } else if (&quot;sad&quot;.equals(sentiment)) {</b>
+<b class="nc">&nbsp;                sadCount++;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;        // Calculate the overall sentiment based on tallies
+<b class="fc">&nbsp;        long total = happyCount + sadCount;</b>
+<b class="pc">&nbsp;        if (total &gt; 0) {</b>
+<b class="nc">&nbsp;            double happyPercentage = (double) happyCount / total;</b>
+<b class="nc">&nbsp;            if (happyPercentage &gt; 0.7) {</b>
+<b class="nc">&nbsp;                return &quot;:-)&quot;;</b>
+<b class="nc">&nbsp;            } else if (happyPercentage &lt; 0.3) {</b>
+<b class="nc">&nbsp;                return &quot;:-(&quot;;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return &quot;:-|&quot;; // Default to neutral when no strong sentiment is present</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Counts the occurrences of a specific keyword in a description.
+&nbsp;     *
+&nbsp;     * @param text    the text to search within
+&nbsp;     * @param keyword the keyword to search for
+&nbsp;     * @return the number of times the keyword appears in the text
+&nbsp;     */
+&nbsp;    private long countOccurrences(String text, String keyword) {
+<b class="fc">&nbsp;        int index = 0;</b>
+<b class="fc">&nbsp;        long count = 0;</b>
+<b class="fc">&nbsp;        while ((index = text.indexOf(keyword, index)) != -1) {</b>
+<b class="fc">&nbsp;            count++;</b>
+<b class="fc">&nbsp;            index += keyword.length(); // Move past the current match</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return count;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

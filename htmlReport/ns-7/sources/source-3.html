@@ -1,0 +1,462 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > search</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">views.html</a>
+</div>
+
+<h1>Coverage Summary for Class: search (views.html)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+  <tr>
+    <td class="name">search$</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.6%
+  </span>
+  <span class="absValue">
+    (137/139)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.6%
+  </span>
+  <span class="absValue">
+    (137/139)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package views.html
+&nbsp;
+&nbsp;import _root_.play.twirl.api.TwirlFeatureImports._
+&nbsp;import _root_.play.twirl.api.TwirlHelperImports._
+&nbsp;import _root_.play.twirl.api.Html
+&nbsp;import _root_.play.twirl.api.JavaScript
+&nbsp;import _root_.play.twirl.api.Txt
+&nbsp;import _root_.play.twirl.api.Xml
+&nbsp;import models._
+&nbsp;import controllers._
+&nbsp;import play.api.i18n._
+&nbsp;import views.html._
+&nbsp;import play.api.templates.PlayMagic._
+&nbsp;import java.lang._
+&nbsp;import java.util._
+&nbsp;import play.core.j.PlayMagicForJava._
+&nbsp;import play.mvc._
+&nbsp;import play.api.data.Field
+&nbsp;import play.data._
+&nbsp;import play.core.j.PlayFormsMagicForJava._
+&nbsp;import scala.jdk.CollectionConverters._
+&nbsp;
+<b class="fc">&nbsp;object search extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[String,play.twirl.api.HtmlFormat.Appendable] {</b>
+&nbsp;
+&nbsp;  /**/
+&nbsp;  def apply/*1.2*/(title: String):play.twirl.api.HtmlFormat.Appendable = {
+<b class="fc">&nbsp;    _display_ {</b>
+&nbsp;      {
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;Seq[Any](format.raw/*2.1*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;&quot;&quot;&quot;),format.raw/*3.1*/(&quot;&quot;&quot;&lt;html&gt;</b>
+&nbsp;&lt;head&gt;
+<b class="fc">&nbsp;    &lt;title&gt;&quot;&quot;&quot;),_display_(/*5.13*/title),format.raw/*5.18*/(&quot;&quot;&quot;&lt;/title&gt;</b>
+&nbsp;
+&nbsp;    &lt;!-- Link to main CSS stylesheet --&gt;
+<b class="fc">&nbsp;    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&quot;&quot;&quot;),_display_(/*8.51*/routes/*8.57*/.Assets.versioned(&quot;stylesheets/main.css&quot;)),format.raw/*8.98*/(&quot;&quot;&quot;&quot;&gt;</b>
+&nbsp;
+&nbsp;    &lt;style&gt;
+<b class="fc">&nbsp;        body &quot;&quot;&quot;),format.raw/*11.14*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*11.15*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*12.13*/(&quot;&quot;&quot;font-family: Arial, sans-serif;</b>
+&nbsp;            text-align: center;
+&nbsp;            background-color: #f9f9f9;
+&nbsp;            margin: 0;
+&nbsp;            padding: 0;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*17.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*17.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*19.9*/(&quot;&quot;&quot;h1 &quot;&quot;&quot;),format.raw/*19.12*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*19.13*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*20.13*/(&quot;&quot;&quot;color: #e74c3c;</b>
+&nbsp;            margin-bottom: 20px;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*22.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*22.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*24.9*/(&quot;&quot;&quot;form &quot;&quot;&quot;),format.raw/*24.14*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*24.15*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*25.13*/(&quot;&quot;&quot;margin-bottom: 30px;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*26.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*26.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*28.9*/(&quot;&quot;&quot;input[type=&quot;text&quot;] &quot;&quot;&quot;),format.raw/*28.28*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*28.29*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*29.13*/(&quot;&quot;&quot;width: 40%;</b>
+&nbsp;            padding: 10px;
+&nbsp;            border: 1px solid #ccc;
+&nbsp;            border-radius: 5px;
+&nbsp;            font-size: 16px;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*34.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*34.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*36.9*/(&quot;&quot;&quot;button &quot;&quot;&quot;),format.raw/*36.16*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*36.17*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*37.13*/(&quot;&quot;&quot;padding: 10px 20px;</b>
+&nbsp;            background-color: #e74c3c;
+&nbsp;            color: white;
+&nbsp;            border: none;
+&nbsp;            border-radius: 5px;
+&nbsp;            font-size: 16px;
+&nbsp;            cursor: pointer;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*44.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*44.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*46.9*/(&quot;&quot;&quot;button:hover &quot;&quot;&quot;),format.raw/*46.22*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*46.23*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*47.13*/(&quot;&quot;&quot;background-color: #c0392b;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*48.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*48.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*50.9*/(&quot;&quot;&quot;.query-section &quot;&quot;&quot;),format.raw/*50.24*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*50.25*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*51.13*/(&quot;&quot;&quot;margin: 30px auto;</b>
+&nbsp;            width: 80%;
+&nbsp;            text-align: left;
+&nbsp;            background: #fff;
+&nbsp;            padding: 20px;
+&nbsp;            border: 1px solid #ddd;
+&nbsp;            border-radius: 10px;
+&nbsp;            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*59.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*59.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*61.9*/(&quot;&quot;&quot;.video-item &quot;&quot;&quot;),format.raw/*61.21*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*61.22*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*62.13*/(&quot;&quot;&quot;margin-bottom: 20px;</b>
+&nbsp;            padding-bottom: 20px;
+&nbsp;            border-bottom: 1px solid #ddd;
+&nbsp;            text-align: left;
+&nbsp;            display: flex;
+&nbsp;            gap: 15px;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*68.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*68.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*70.9*/(&quot;&quot;&quot;.video-item img &quot;&quot;&quot;),format.raw/*70.25*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*70.26*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*71.13*/(&quot;&quot;&quot;max-width: 120px;</b>
+&nbsp;            height: auto;
+&nbsp;            border-radius: 5px;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*74.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*74.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*76.9*/(&quot;&quot;&quot;.video-details &quot;&quot;&quot;),format.raw/*76.24*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*76.25*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*77.13*/(&quot;&quot;&quot;flex-grow: 1;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*78.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*78.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*80.9*/(&quot;&quot;&quot;.tags-container &quot;&quot;&quot;),format.raw/*80.25*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*80.26*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*81.13*/(&quot;&quot;&quot;margin-top: 10px;</b>
+&nbsp;            display: flex;
+&nbsp;            flex-wrap: wrap;
+&nbsp;            gap: 10px;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*85.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*85.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*87.9*/(&quot;&quot;&quot;.tag-link &quot;&quot;&quot;),format.raw/*87.19*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*87.20*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*88.13*/(&quot;&quot;&quot;color: #3498db;</b>
+&nbsp;            text-decoration: none;
+&nbsp;            cursor: pointer;
+&nbsp;            background-color: #f2f2f2;
+&nbsp;            padding: 5px 10px;
+&nbsp;            border-radius: 5px;
+&nbsp;            display: inline-block;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*95.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*95.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*97.9*/(&quot;&quot;&quot;.tag-link:hover &quot;&quot;&quot;),format.raw/*97.25*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*97.26*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*98.13*/(&quot;&quot;&quot;background-color: #e0e0e0;</b>
+&nbsp;            text-decoration: underline;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*100.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*100.10*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*101.5*/(&quot;&quot;&quot;&lt;/style&gt;</b>
+&nbsp;&lt;/head&gt;
+&nbsp;&lt;body&gt;
+&nbsp;&lt;!-- Main Title --&gt;
+<b class="fc">&nbsp;&lt;a href=&quot;&quot;&quot;&quot;),_display_(/*105.11*/routes/*105.17*/.YouTubeController.search()),format.raw/*105.44*/(&quot;&quot;&quot;&quot;&gt;&lt;h1&gt;Welcome to YT Lytics&lt;/h1&gt;&lt;/a&gt;</b>
+&nbsp;
+&nbsp;&lt;!-- Search Bar --&gt;
+&nbsp;&lt;form id=&quot;searchForm&quot;&gt;
+&nbsp;    &lt;div&gt;
+&nbsp;        &lt;label for=&quot;query&quot;&gt;Enter search terms&lt;/label&gt;
+&nbsp;        &lt;input type=&quot;text&quot; id=&quot;query&quot; name=&quot;query&quot; placeholder=&quot;Search for videos...&quot; /&gt;
+&nbsp;        &lt;button type=&quot;button&quot; id=&quot;searchButton&quot;&gt;Go!&lt;/button&gt;
+&nbsp;    &lt;/div&gt;
+&nbsp;&lt;/form&gt;
+&nbsp;
+&nbsp;&lt;!-- Results --&gt;
+&nbsp;&lt;div id=&quot;results&quot;&gt;
+&nbsp;    &lt;!-- Results dynamically inserted by WebSocket --&gt;
+&nbsp;&lt;/div&gt;
+&nbsp;
+&nbsp;&lt;script&gt;
+<b class="fc">&nbsp;    document.addEventListener(&quot;DOMContentLoaded&quot;, () =&gt; &quot;&quot;&quot;),format.raw/*122.57*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*122.58*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*123.9*/(&quot;&quot;&quot;const searchButton = document.getElementById(&quot;searchButton&quot;);</b>
+&nbsp;        const queryInput = document.getElementById(&quot;query&quot;);
+&nbsp;        const resultsDiv = document.getElementById(&quot;results&quot;);
+&nbsp;
+&nbsp;        const socket = new WebSocket(&quot;ws://localhost:9000/ws&quot;);
+&nbsp;
+<b class="fc">&nbsp;        socket.onopen = () =&gt; &quot;&quot;&quot;),format.raw/*129.31*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*129.32*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*130.13*/(&quot;&quot;&quot;console.log(&quot;WebSocket connection established.&quot;);</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*131.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*131.10*/(&quot;&quot;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        socket.onmessage = (event) =&gt; &quot;&quot;&quot;),format.raw/*133.39*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*133.40*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*134.13*/(&quot;&quot;&quot;console.log(&quot;Received data from server:&quot;, event.data);</b>
+&nbsp;
+&nbsp;            let data;
+<b class="fc">&nbsp;            try &quot;&quot;&quot;),format.raw/*137.17*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*137.18*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*138.17*/(&quot;&quot;&quot;data = JSON.parse(event.data);</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*139.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*139.14*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*139.15*/(&quot;&quot;&quot;catch (err) &quot;&quot;&quot;),format.raw/*139.27*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*139.28*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*140.17*/(&quot;&quot;&quot;console.error(&quot;Error parsing WebSocket message:&quot;, err);</b>
+&nbsp;                return;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*142.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*142.14*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*144.13*/(&quot;&quot;&quot;if (data.query &amp;&amp; data.overallSentiment) &quot;&quot;&quot;),format.raw/*144.54*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*144.55*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*145.17*/(&quot;&quot;&quot;renderQueryHeading(data.query, data.overallSentiment); // Render heading first</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*146.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*146.14*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*148.13*/(&quot;&quot;&quot;if (Array.isArray(data)) &quot;&quot;&quot;),format.raw/*148.38*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*148.39*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*149.17*/(&quot;&quot;&quot;renderVideoResults(data, queryInput.value.trim());</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*150.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*150.14*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*150.15*/(&quot;&quot;&quot;else &quot;&quot;&quot;),format.raw/*150.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*150.21*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*151.17*/(&quot;&quot;&quot;console.warn(&quot;Unexpected response format or no results found.&quot;);</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*152.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*152.14*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*153.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*153.10*/(&quot;&quot;&quot;;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        socket.onerror = (error) =&gt; &quot;&quot;&quot;),format.raw/*156.37*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*156.38*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*157.13*/(&quot;&quot;&quot;console.error(&quot;WebSocket Error:&quot;, error);</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*158.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*158.10*/(&quot;&quot;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        socket.onclose = () =&gt; &quot;&quot;&quot;),format.raw/*160.32*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*160.33*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*161.13*/(&quot;&quot;&quot;console.log(&quot;WebSocket connection closed.&quot;);</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*162.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*162.10*/(&quot;&quot;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        searchButton.addEventListener(&quot;click&quot;, () =&gt; &quot;&quot;&quot;),format.raw/*164.54*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*164.55*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*165.13*/(&quot;&quot;&quot;const query = queryInput.value.trim();</b>
+<b class="fc">&nbsp;            if (query) &quot;&quot;&quot;),format.raw/*166.24*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*166.25*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*167.17*/(&quot;&quot;&quot;const message = &quot;&quot;&quot;),format.raw/*167.33*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*167.34*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*167.35*/(&quot;&quot;&quot;action: &quot;search&quot;, query: query &quot;&quot;&quot;),format.raw/*167.66*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*167.67*/(&quot;&quot;&quot;;</b>
+&nbsp;                socket.send(JSON.stringify(message));
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*169.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*169.14*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*169.15*/(&quot;&quot;&quot;else &quot;&quot;&quot;),format.raw/*169.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*169.21*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*170.17*/(&quot;&quot;&quot;alert(&quot;Please enter a search term.&quot;);</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*171.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*171.14*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*172.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*172.10*/(&quot;&quot;&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;        function renderQueryHeading(query, sentiment) &quot;&quot;&quot;),format.raw/*174.55*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*174.56*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*175.13*/(&quot;&quot;&quot;let queryContainer = document.getElementById(`query-container-$&quot;&quot;&quot;),format.raw/*175.76*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*175.77*/(&quot;&quot;&quot;CSS.escape(query)&quot;&quot;&quot;),format.raw/*175.94*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*175.95*/(&quot;&quot;&quot;`);</b>
+&nbsp;
+&nbsp;            // If no container exists for this query, create one
+<b class="fc">&nbsp;            if (!queryContainer) &quot;&quot;&quot;),format.raw/*178.34*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*178.35*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*179.17*/(&quot;&quot;&quot;queryContainer = document.createElement(&quot;div&quot;);</b>
+<b class="fc">&nbsp;                queryContainer.id = `query-container-$&quot;&quot;&quot;),format.raw/*180.55*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*180.56*/(&quot;&quot;&quot;CSS.escape(query)&quot;&quot;&quot;),format.raw/*180.73*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*180.74*/(&quot;&quot;&quot;`;</b>
+&nbsp;                queryContainer.className = &quot;query-container&quot;;
+&nbsp;                resultsDiv.prepend(queryContainer);
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*183.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*183.14*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*185.13*/(&quot;&quot;&quot;// Check if the heading already exists</b>
+&nbsp;            let existingHeading = queryContainer.querySelector(&quot;h2&quot;);
+<b class="fc">&nbsp;            if (!existingHeading) &quot;&quot;&quot;),format.raw/*187.35*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*187.36*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*188.17*/(&quot;&quot;&quot;const heading = document.createElement(&quot;h2&quot;);</b>
+<b class="fc">&nbsp;                heading.innerHTML = `Results for: $&quot;&quot;&quot;),format.raw/*189.52*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*189.53*/(&quot;&quot;&quot;query&quot;&quot;&quot;),format.raw/*189.58*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*189.59*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*189.60*/(&quot;&quot;&quot;(Sentiment: $&quot;&quot;&quot;),format.raw/*189.73*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*189.74*/(&quot;&quot;&quot;sentiment&quot;&quot;&quot;),format.raw/*189.83*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*189.84*/(&quot;&quot;&quot;)`;</b>
+&nbsp;
+&nbsp;                // Add the &quot;More Stats&quot; link next to the heading
+&nbsp;                const moreStatsLink = document.createElement(&quot;a&quot;);
+&nbsp;                moreStatsLink.textContent = &quot;More Stats&quot;;
+<b class="fc">&nbsp;                moreStatsLink.href = `/wordStats/query=$&quot;&quot;&quot;),format.raw/*194.57*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*194.58*/(&quot;&quot;&quot;encodeURIComponent(query)&quot;&quot;&quot;),format.raw/*194.83*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*194.84*/(&quot;&quot;&quot;`;</b>
+&nbsp;                moreStatsLink.style.marginLeft = &quot;20px&quot;;
+&nbsp;
+&nbsp;                // Append the heading and link
+&nbsp;                queryContainer.appendChild(heading);
+&nbsp;                queryContainer.appendChild(moreStatsLink);
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*200.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*200.14*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*201.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*201.10*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*203.9*/(&quot;&quot;&quot;function renderVideoResults(videos, query) &quot;&quot;&quot;),format.raw/*203.52*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*203.53*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*204.13*/(&quot;&quot;&quot;let queryContainer = document.getElementById(`query-container-$&quot;&quot;&quot;),format.raw/*204.76*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*204.77*/(&quot;&quot;&quot;CSS.escape(query)&quot;&quot;&quot;),format.raw/*204.94*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*204.95*/(&quot;&quot;&quot;`);</b>
+&nbsp;
+&nbsp;            // If no container exists for this query, create one
+<b class="fc">&nbsp;            if (!queryContainer) &quot;&quot;&quot;),format.raw/*207.34*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*207.35*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*208.17*/(&quot;&quot;&quot;queryContainer = document.createElement(&quot;div&quot;);</b>
+<b class="fc">&nbsp;                queryContainer.id = `query-container-$&quot;&quot;&quot;),format.raw/*209.55*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*209.56*/(&quot;&quot;&quot;CSS.escape(query)&quot;&quot;&quot;),format.raw/*209.73*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*209.74*/(&quot;&quot;&quot;`;</b>
+&nbsp;                queryContainer.className = &quot;query-container&quot;;
+&nbsp;                resultsDiv.prepend(queryContainer);
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*212.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*212.14*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*214.13*/(&quot;&quot;&quot;const existingResults = queryContainer.querySelector(&quot;.query-section&quot;);</b>
+<b class="fc">&nbsp;            if (existingResults) &quot;&quot;&quot;),format.raw/*215.34*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*215.35*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*216.17*/(&quot;&quot;&quot;existingResults.remove(); // Remove old results for the same query</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*217.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*217.14*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*219.13*/(&quot;&quot;&quot;const querySection = document.createElement(&quot;div&quot;);</b>
+&nbsp;            querySection.classList.add(&quot;query-section&quot;);
+&nbsp;
+&nbsp;            const overallScoresEntry = videos.shift(); // Remove the first entry from the list
+<b class="fc">&nbsp;            if (overallScoresEntry &amp;&amp; (overallScoresEntry.overallGradeLevel || overallScoresEntry.overallEaseScore)) &quot;&quot;&quot;),format.raw/*223.118*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*223.119*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*224.17*/(&quot;&quot;&quot;const overallScoresElement = document.createElement(&quot;p&quot;);</b>
+&nbsp;                overallScoresElement.innerHTML = `
+<b class="fc">&nbsp;        &lt;strong&gt;Overall Grade Level:&lt;/strong&gt; $&quot;&quot;&quot;),format.raw/*226.48*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*226.49*/(&quot;&quot;&quot;overallScoresEntry.overallGradeLevel || &quot;N/A&quot;&quot;&quot;&quot;),format.raw/*226.94*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*226.95*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*227.9*/(&quot;&quot;&quot;&amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;</b>
+<b class="fc">&nbsp;        &lt;strong&gt;Overall Reading Ease:&lt;/strong&gt; $&quot;&quot;&quot;),format.raw/*228.49*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*228.50*/(&quot;&quot;&quot;overallScoresEntry.overallEaseScore || &quot;N/A&quot;&quot;&quot;&quot;),format.raw/*228.94*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*228.95*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*229.5*/(&quot;&quot;&quot;`;</b>
+&nbsp;                overallScoresElement.style.fontSize = &quot;18px&quot;;
+&nbsp;                overallScoresElement.style.color = &quot;#3498db&quot;;
+&nbsp;                overallScoresElement.style.display = &quot;inline-block&quot;;
+&nbsp;                overallScoresElement.style.margin = &quot;10px 0&quot;;
+&nbsp;                querySection.appendChild(overallScoresElement);
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*235.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*235.14*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*237.13*/(&quot;&quot;&quot;videos.forEach((video, index) =&gt; &quot;&quot;&quot;),format.raw/*237.46*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*237.47*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*238.17*/(&quot;&quot;&quot;if (!video.title || !video.channelTitle || !video.defaultThumbnail) &quot;&quot;&quot;),format.raw/*238.85*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*238.86*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                    &quot;&quot;&quot;),format.raw/*239.21*/(&quot;&quot;&quot;console.warn(`Skipping incomplete video data for index $&quot;&quot;&quot;),format.raw/*239.77*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*239.78*/(&quot;&quot;&quot;index&quot;&quot;&quot;),format.raw/*239.83*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*239.84*/(&quot;&quot;&quot;:`, video);</b>
+&nbsp;                    return;
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*241.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*241.18*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*243.17*/(&quot;&quot;&quot;const videoItem = document.createElement(&quot;div&quot;);</b>
+&nbsp;                videoItem.classList.add(&quot;video-item&quot;);
+&nbsp;
+&nbsp;                // Add the video details section
+&nbsp;                const videoDetails = document.createElement(&quot;div&quot;);
+&nbsp;                videoDetails.className = &quot;video-details&quot;;
+&nbsp;
+&nbsp;                const videoLink = video.videoId
+<b class="fc">&nbsp;                        ? `&lt;a href=&quot;https://www.youtube.com/watch?v=$&quot;&quot;&quot;),format.raw/*251.70*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*251.71*/(&quot;&quot;&quot;video.videoId&quot;&quot;&quot;),format.raw/*251.84*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*251.85*/(&quot;&quot;&quot;&quot; target=&quot;_blank&quot;&gt;$&quot;&quot;&quot;),format.raw/*251.104*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*251.105*/(&quot;&quot;&quot;video.title&quot;&quot;&quot;),format.raw/*251.116*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*251.117*/(&quot;&quot;&quot;&lt;/a&gt;`</b>
+<b class="fc">&nbsp;                        : `$&quot;&quot;&quot;),format.raw/*252.29*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*252.30*/(&quot;&quot;&quot;video.title&quot;&quot;&quot;),format.raw/*252.41*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*252.42*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*252.43*/(&quot;&quot;&quot;(No link available)`;</b>
+&nbsp;
+&nbsp;                videoDetails.innerHTML = `
+<b class="fc">&nbsp;            &lt;p&gt;&lt;strong&gt;Title:&lt;/strong&gt; $&quot;&quot;&quot;),format.raw/*255.41*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*255.42*/(&quot;&quot;&quot;videoLink&quot;&quot;&quot;),format.raw/*255.51*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*255.52*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+<b class="fc">&nbsp;            &lt;p&gt;&lt;strong&gt;Channel:&lt;/strong&gt; &lt;a href=&quot;/channel/$&quot;&quot;&quot;),format.raw/*256.61*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*256.62*/(&quot;&quot;&quot;video.channelId&quot;&quot;&quot;),format.raw/*256.77*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*256.78*/(&quot;&quot;&quot;&quot; target=&quot;_blank&quot;&gt;$&quot;&quot;&quot;),format.raw/*256.97*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*256.98*/(&quot;&quot;&quot;video.channelTitle&quot;&quot;&quot;),format.raw/*256.116*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*256.117*/(&quot;&quot;&quot;&lt;/a&gt;&lt;/p&gt;</b>
+<b class="fc">&nbsp;            &lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt; $&quot;&quot;&quot;),format.raw/*257.47*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*257.48*/(&quot;&quot;&quot;video.description || &quot;No description available.&quot;&quot;&quot;&quot;),format.raw/*257.96*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*257.97*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+<b class="fc">&nbsp;            &lt;p&gt;&lt;strong&gt;Grade Level:&lt;/strong&gt; $&quot;&quot;&quot;),format.raw/*258.47*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*258.48*/(&quot;&quot;&quot;video.gradeLevel || &quot;N/A&quot;&quot;&quot;&quot;),format.raw/*258.73*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*258.74*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+<b class="fc">&nbsp;            &lt;p&gt;&lt;strong&gt;Reading Ease:&lt;/strong&gt; $&quot;&quot;&quot;),format.raw/*259.48*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*259.49*/(&quot;&quot;&quot;video.readingEaseScore || &quot;N/A&quot;&quot;&quot;&quot;),format.raw/*259.80*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*259.81*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+&nbsp;        `;
+&nbsp;
+&nbsp;                // Add the tags section below the description
+<b class="fc">&nbsp;                if (video.tags) &quot;&quot;&quot;),format.raw/*263.33*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*263.34*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                    &quot;&quot;&quot;),format.raw/*264.21*/(&quot;&quot;&quot;const tagsContainer = document.createElement(&quot;div&quot;);</b>
+&nbsp;                    tagsContainer.className = &quot;tags-container&quot;;
+&nbsp;                    tagsContainer.innerHTML = `&lt;strong&gt;Tags:&lt;/strong&gt;`;
+<b class="fc">&nbsp;                    video.tags.split(&quot;, &quot;).forEach((tag) =&gt; &quot;&quot;&quot;),format.raw/*267.61*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*267.62*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;                        &quot;&quot;&quot;),format.raw/*268.25*/(&quot;&quot;&quot;const tagLink = document.createElement(&quot;a&quot;);</b>
+<b class="fc">&nbsp;                        tagLink.href = `/tag/videos/$&quot;&quot;&quot;),format.raw/*269.54*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*269.55*/(&quot;&quot;&quot;tag&quot;&quot;&quot;),format.raw/*269.58*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*269.59*/(&quot;&quot;&quot;`;</b>
+&nbsp;                        tagLink.className = &quot;tag-link&quot;;
+&nbsp;                        tagLink.target = &quot;_blank&quot;;
+&nbsp;                        tagLink.textContent = tag;
+&nbsp;                        tagsContainer.appendChild(tagLink);
+<b class="fc">&nbsp;                    &quot;&quot;&quot;),format.raw/*274.21*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*274.22*/(&quot;&quot;&quot;);</b>
+&nbsp;                    videoDetails.appendChild(tagsContainer); // Add tags to videoDetails, after the description
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*276.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*276.18*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;                &quot;&quot;&quot;),format.raw/*278.17*/(&quot;&quot;&quot;// Add the thumbnail</b>
+&nbsp;                const thumbnailDiv = document.createElement(&quot;div&quot;);
+&nbsp;                const thumbnailImg = document.createElement(&quot;img&quot;);
+&nbsp;                thumbnailImg.src = video.defaultThumbnail;
+&nbsp;                thumbnailImg.alt = &quot;Thumbnail&quot;;
+&nbsp;                thumbnailDiv.appendChild(thumbnailImg);
+&nbsp;
+&nbsp;                // Append videoDetails and thumbnail to the videoItem
+&nbsp;                videoItem.appendChild(thumbnailDiv);
+&nbsp;                videoItem.appendChild(videoDetails);
+&nbsp;
+&nbsp;                // Add the videoItem to the querySection
+&nbsp;                querySection.appendChild(videoItem);
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*291.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*291.14*/(&quot;&quot;&quot;);</b>
+&nbsp;
+&nbsp;            queryContainer.appendChild(querySection); // Add results to the query container
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*294.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*294.10*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*295.5*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*295.6*/(&quot;&quot;&quot;);</b>
+&nbsp;&lt;/script&gt;
+&nbsp;&lt;/body&gt;
+&nbsp;&lt;/html&gt;
+&nbsp;&quot;&quot;&quot;))
+&nbsp;      }
+&nbsp;    }
+&nbsp;  }
+&nbsp;
+<b class="fc">&nbsp;  def render(title:String): play.twirl.api.HtmlFormat.Appendable = apply(title)</b>
+&nbsp;
+<b class="nc">&nbsp;  def f:((String) =&gt; play.twirl.api.HtmlFormat.Appendable) = (title) =&gt; apply(title)</b>
+&nbsp;
+<b class="nc">&nbsp;  def ref: this.type = this</b>
+&nbsp;
+&nbsp;}
+&nbsp;
+&nbsp;
+&nbsp;              /*
+&nbsp;                  -- GENERATED --
+&nbsp;                  SOURCE: app/views/search.scala.html
+&nbsp;                  HASH: eb42be13a36b7d979da858e131d46d4088d25155
+&nbsp;                  MATRIX: 908-&gt;1|1017-&gt;17|1044-&gt;18|1096-&gt;44|1121-&gt;49|1248-&gt;150|1262-&gt;156|1323-&gt;197|1380-&gt;226|1409-&gt;227|1450-&gt;240|1635-&gt;398|1664-&gt;399|1701-&gt;409|1732-&gt;412|1761-&gt;413|1802-&gt;426|1886-&gt;483|1915-&gt;484|1952-&gt;494|1985-&gt;499|2014-&gt;500|2055-&gt;513|2111-&gt;542|2140-&gt;543|2177-&gt;553|2224-&gt;572|2253-&gt;573|2294-&gt;586|2465-&gt;730|2494-&gt;731|2531-&gt;741|2566-&gt;748|2595-&gt;749|2636-&gt;762|2872-&gt;971|2901-&gt;972|2938-&gt;982|2979-&gt;995|3008-&gt;996|3049-&gt;1009|3111-&gt;1044|3140-&gt;1045|3177-&gt;1055|3220-&gt;1070|3249-&gt;1071|3290-&gt;1084|3578-&gt;1345|3607-&gt;1346|3644-&gt;1356|3684-&gt;1368|3713-&gt;1369|3754-&gt;1382|3967-&gt;1568|3996-&gt;1569|4033-&gt;1579|4077-&gt;1595|4106-&gt;1596|4147-&gt;1609|4258-&gt;1693|4287-&gt;1694|4324-&gt;1704|4367-&gt;1719|4396-&gt;1720|4437-&gt;1733|4486-&gt;1755|4515-&gt;1756|4552-&gt;1766|4596-&gt;1782|4625-&gt;1783|4666-&gt;1796|4798-&gt;1901|4827-&gt;1902|4864-&gt;1912|4902-&gt;1922|4931-&gt;1923|4972-&gt;1936|5224-&gt;2161|5253-&gt;2162|5290-&gt;2172|5334-&gt;2188|5363-&gt;2189|5404-&gt;2202|5507-&gt;2277|5537-&gt;2278|5570-&gt;2283|5652-&gt;2337|5668-&gt;2343|5717-&gt;2370|6224-&gt;2848|6254-&gt;2849|6291-&gt;2858|6602-&gt;3140|6632-&gt;3141|6674-&gt;3154|6760-&gt;3212|6790-&gt;3213|6860-&gt;3254|6890-&gt;3255|6932-&gt;3268|7055-&gt;3362|7085-&gt;3363|7131-&gt;3380|7203-&gt;3423|7233-&gt;3424|7263-&gt;3425|7304-&gt;3437|7334-&gt;3438|7380-&gt;3455|7501-&gt;3547|7531-&gt;3548|7574-&gt;3562|7644-&gt;3603|7674-&gt;3604|7720-&gt;3621|7840-&gt;3712|7870-&gt;3713|7913-&gt;3727|7967-&gt;3752|7997-&gt;3753|8043-&gt;3770|8135-&gt;3833|8165-&gt;3834|8195-&gt;3835|8229-&gt;3840|8259-&gt;3841|8305-&gt;3858|8411-&gt;3935|8441-&gt;3936|8478-&gt;3945|8508-&gt;3946|8577-&gt;3986|8607-&gt;3987|8649-&gt;4000|8727-&gt;4050|8757-&gt;4051|8820-&gt;4085|8850-&gt;4086|8892-&gt;4099|8973-&gt;4152|9003-&gt;4153|9088-&gt;4209|9118-&gt;4210|9160-&gt;4223|9251-&gt;4285|9281-&gt;4286|9327-&gt;4303|9372-&gt;4319|9402-&gt;4320|9432-&gt;4321|9492-&gt;4352|9522-&gt;4353|9619-&gt;4421|9649-&gt;4422|9679-&gt;4423|9713-&gt;4428|9743-&gt;4429|9789-&gt;4446|9868-&gt;4496|9898-&gt;4497|9935-&gt;4506|9965-&gt;4507|10052-&gt;4565|10082-&gt;4566|10124-&gt;4579|10216-&gt;4642|10246-&gt;4643|10292-&gt;4660|10322-&gt;4661|10454-&gt;4764|10484-&gt;4765|10530-&gt;4782|10661-&gt;4884|10691-&gt;4885|10737-&gt;4902|10767-&gt;4903|10925-&gt;5032|10955-&gt;5033|10998-&gt;5047|11170-&gt;5190|11200-&gt;5191|11246-&gt;5208|11372-&gt;5305|11402-&gt;5306|11436-&gt;5311|11466-&gt;5312|11496-&gt;5313|11538-&gt;5326|11568-&gt;5327|11606-&gt;5336|11636-&gt;5337|11916-&gt;5588|11946-&gt;5589|12000-&gt;5614|12030-&gt;5615|12291-&gt;5847|12321-&gt;5848|12358-&gt;5857|12388-&gt;5858|12426-&gt;5868|12498-&gt;5911|12528-&gt;5912|12570-&gt;5925|12662-&gt;5988|12692-&gt;5989|12738-&gt;6006|12768-&gt;6007|12900-&gt;6110|12930-&gt;6111|12976-&gt;6128|13107-&gt;6230|13137-&gt;6231|13183-&gt;6248|13213-&gt;6249|13371-&gt;6378|13401-&gt;6379|13444-&gt;6393|13578-&gt;6498|13608-&gt;6499|13654-&gt;6516|13762-&gt;6595|13792-&gt;6596|13835-&gt;6610|14187-&gt;6932|14218-&gt;6933|14264-&gt;6950|14449-&gt;7106|14479-&gt;7107|14553-&gt;7152|14583-&gt;7153|14620-&gt;7162|14723-&gt;7236|14753-&gt;7237|14826-&gt;7281|14856-&gt;7282|14889-&gt;7287|15252-&gt;7621|15282-&gt;7622|15325-&gt;7636|15387-&gt;7669|15417-&gt;7670|15463-&gt;7687|15560-&gt;7755|15590-&gt;7756|15640-&gt;7777|15725-&gt;7833|15755-&gt;7834|15789-&gt;7839|15819-&gt;7840|15904-&gt;7896|15934-&gt;7897|15981-&gt;7915|16408-&gt;8313|16438-&gt;8314|16480-&gt;8327|16510-&gt;8328|16559-&gt;8347|16590-&gt;8348|16631-&gt;8359|16662-&gt;8360|16725-&gt;8394|16755-&gt;8395|16795-&gt;8406|16825-&gt;8407|16855-&gt;8408|16990-&gt;8514|17020-&gt;8515|17058-&gt;8524|17088-&gt;8525|17182-&gt;8590|17212-&gt;8591|17256-&gt;8606|17286-&gt;8607|17334-&gt;8626|17364-&gt;8627|17412-&gt;8645|17443-&gt;8646|17527-&gt;8701|17557-&gt;8702|17634-&gt;8750|17664-&gt;8751|17744-&gt;8802|17774-&gt;8803|17828-&gt;8828|17858-&gt;8829|17939-&gt;8881|17969-&gt;8882|18029-&gt;8913|18059-&gt;8914|18199-&gt;9025|18229-&gt;9026|18279-&gt;9047|18557-&gt;9296|18587-&gt;9297|18641-&gt;9322|18768-&gt;9420|18798-&gt;9421|18830-&gt;9424|18860-&gt;9425|19130-&gt;9666|19160-&gt;9667|19320-&gt;9798|19350-&gt;9799|19397-&gt;9817|20046-&gt;10437|20076-&gt;10438|20208-&gt;10542|20238-&gt;10543|20271-&gt;10548|20300-&gt;10549
+&nbsp;                  LINES: 27-&gt;1|32-&gt;2|33-&gt;3|35-&gt;5|35-&gt;5|38-&gt;8|38-&gt;8|38-&gt;8|41-&gt;11|41-&gt;11|42-&gt;12|47-&gt;17|47-&gt;17|49-&gt;19|49-&gt;19|49-&gt;19|50-&gt;20|52-&gt;22|52-&gt;22|54-&gt;24|54-&gt;24|54-&gt;24|55-&gt;25|56-&gt;26|56-&gt;26|58-&gt;28|58-&gt;28|58-&gt;28|59-&gt;29|64-&gt;34|64-&gt;34|66-&gt;36|66-&gt;36|66-&gt;36|67-&gt;37|74-&gt;44|74-&gt;44|76-&gt;46|76-&gt;46|76-&gt;46|77-&gt;47|78-&gt;48|78-&gt;48|80-&gt;50|80-&gt;50|80-&gt;50|81-&gt;51|89-&gt;59|89-&gt;59|91-&gt;61|91-&gt;61|91-&gt;61|92-&gt;62|98-&gt;68|98-&gt;68|100-&gt;70|100-&gt;70|100-&gt;70|101-&gt;71|104-&gt;74|104-&gt;74|106-&gt;76|106-&gt;76|106-&gt;76|107-&gt;77|108-&gt;78|108-&gt;78|110-&gt;80|110-&gt;80|110-&gt;80|111-&gt;81|115-&gt;85|115-&gt;85|117-&gt;87|117-&gt;87|117-&gt;87|118-&gt;88|125-&gt;95|125-&gt;95|127-&gt;97|127-&gt;97|127-&gt;97|128-&gt;98|130-&gt;100|130-&gt;100|131-&gt;101|135-&gt;105|135-&gt;105|135-&gt;105|152-&gt;122|152-&gt;122|153-&gt;123|159-&gt;129|159-&gt;129|160-&gt;130|161-&gt;131|161-&gt;131|163-&gt;133|163-&gt;133|164-&gt;134|167-&gt;137|167-&gt;137|168-&gt;138|169-&gt;139|169-&gt;139|169-&gt;139|169-&gt;139|169-&gt;139|170-&gt;140|172-&gt;142|172-&gt;142|174-&gt;144|174-&gt;144|174-&gt;144|175-&gt;145|176-&gt;146|176-&gt;146|178-&gt;148|178-&gt;148|178-&gt;148|179-&gt;149|180-&gt;150|180-&gt;150|180-&gt;150|180-&gt;150|180-&gt;150|181-&gt;151|182-&gt;152|182-&gt;152|183-&gt;153|183-&gt;153|186-&gt;156|186-&gt;156|187-&gt;157|188-&gt;158|188-&gt;158|190-&gt;160|190-&gt;160|191-&gt;161|192-&gt;162|192-&gt;162|194-&gt;164|194-&gt;164|195-&gt;165|196-&gt;166|196-&gt;166|197-&gt;167|197-&gt;167|197-&gt;167|197-&gt;167|197-&gt;167|197-&gt;167|199-&gt;169|199-&gt;169|199-&gt;169|199-&gt;169|199-&gt;169|200-&gt;170|201-&gt;171|201-&gt;171|202-&gt;172|202-&gt;172|204-&gt;174|204-&gt;174|205-&gt;175|205-&gt;175|205-&gt;175|205-&gt;175|205-&gt;175|208-&gt;178|208-&gt;178|209-&gt;179|210-&gt;180|210-&gt;180|210-&gt;180|210-&gt;180|213-&gt;183|213-&gt;183|215-&gt;185|217-&gt;187|217-&gt;187|218-&gt;188|219-&gt;189|219-&gt;189|219-&gt;189|219-&gt;189|219-&gt;189|219-&gt;189|219-&gt;189|219-&gt;189|219-&gt;189|224-&gt;194|224-&gt;194|224-&gt;194|224-&gt;194|230-&gt;200|230-&gt;200|231-&gt;201|231-&gt;201|233-&gt;203|233-&gt;203|233-&gt;203|234-&gt;204|234-&gt;204|234-&gt;204|234-&gt;204|234-&gt;204|237-&gt;207|237-&gt;207|238-&gt;208|239-&gt;209|239-&gt;209|239-&gt;209|239-&gt;209|242-&gt;212|242-&gt;212|244-&gt;214|245-&gt;215|245-&gt;215|246-&gt;216|247-&gt;217|247-&gt;217|249-&gt;219|253-&gt;223|253-&gt;223|254-&gt;224|256-&gt;226|256-&gt;226|256-&gt;226|256-&gt;226|257-&gt;227|258-&gt;228|258-&gt;228|258-&gt;228|258-&gt;228|259-&gt;229|265-&gt;235|265-&gt;235|267-&gt;237|267-&gt;237|267-&gt;237|268-&gt;238|268-&gt;238|268-&gt;238|269-&gt;239|269-&gt;239|269-&gt;239|269-&gt;239|269-&gt;239|271-&gt;241|271-&gt;241|273-&gt;243|281-&gt;251|281-&gt;251|281-&gt;251|281-&gt;251|281-&gt;251|281-&gt;251|281-&gt;251|281-&gt;251|282-&gt;252|282-&gt;252|282-&gt;252|282-&gt;252|282-&gt;252|285-&gt;255|285-&gt;255|285-&gt;255|285-&gt;255|286-&gt;256|286-&gt;256|286-&gt;256|286-&gt;256|286-&gt;256|286-&gt;256|286-&gt;256|286-&gt;256|287-&gt;257|287-&gt;257|287-&gt;257|287-&gt;257|288-&gt;258|288-&gt;258|288-&gt;258|288-&gt;258|289-&gt;259|289-&gt;259|289-&gt;259|289-&gt;259|293-&gt;263|293-&gt;263|294-&gt;264|297-&gt;267|297-&gt;267|298-&gt;268|299-&gt;269|299-&gt;269|299-&gt;269|299-&gt;269|304-&gt;274|304-&gt;274|306-&gt;276|306-&gt;276|308-&gt;278|321-&gt;291|321-&gt;291|324-&gt;294|324-&gt;294|325-&gt;295|325-&gt;295
+&nbsp;                  -- GENERATED --
+&nbsp;              */
+&nbsp;          
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

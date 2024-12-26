@@ -1,0 +1,232 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > wordStats</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">views.html</a>
+</div>
+
+<h1>Coverage Summary for Class: wordStats (views.html)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+  <tr>
+    <td class="name">wordStats$</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (4/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (26/28)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (4/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (26/28)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package views.html
+&nbsp;
+&nbsp;import _root_.play.twirl.api.TwirlFeatureImports._
+&nbsp;import _root_.play.twirl.api.TwirlHelperImports._
+&nbsp;import _root_.play.twirl.api.Html
+&nbsp;import _root_.play.twirl.api.JavaScript
+&nbsp;import _root_.play.twirl.api.Txt
+&nbsp;import _root_.play.twirl.api.Xml
+&nbsp;import models._
+&nbsp;import controllers._
+&nbsp;import play.api.i18n._
+&nbsp;import views.html._
+&nbsp;import play.api.templates.PlayMagic._
+&nbsp;import java.lang._
+&nbsp;import java.util._
+&nbsp;import play.core.j.PlayMagicForJava._
+&nbsp;import play.mvc._
+&nbsp;import play.api.data.Field
+&nbsp;import play.data._
+&nbsp;import play.core.j.PlayFormsMagicForJava._
+&nbsp;import scala.jdk.CollectionConverters._
+&nbsp;
+<b class="fc">&nbsp;object wordStats extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[String,Map[String, Integer],play.twirl.api.HtmlFormat.Appendable] {</b>
+&nbsp;
+&nbsp;  /**/
+&nbsp;  def apply/*1.2*/(query: String, wordStats: Map[String, Integer]):play.twirl.api.HtmlFormat.Appendable = {
+<b class="fc">&nbsp;    _display_ {</b>
+&nbsp;      {
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;Seq[Any](format.raw/*1.50*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;&quot;&quot;&quot;),format.raw/*3.1*/(&quot;&quot;&quot;&lt;html&gt;</b>
+&nbsp;  &lt;head&gt;
+<b class="fc">&nbsp;    &lt;title&gt;Word Statistics for &quot;&quot;&quot;&quot;),_display_(/*5.34*/query),format.raw/*5.39*/(&quot;&quot;&quot;&quot;&lt;/title&gt;</b>
+&nbsp;    &lt;style&gt;
+<b class="fc">&nbsp;            body &quot;&quot;&quot;),format.raw/*7.18*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*7.19*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;              &quot;&quot;&quot;),format.raw/*8.15*/(&quot;&quot;&quot;font-family: Arial, sans-serif;</b>
+&nbsp;              text-align: center;
+&nbsp;              background-color: #f9f9f9;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*11.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*11.14*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*12.13*/(&quot;&quot;&quot;table &quot;&quot;&quot;),format.raw/*12.19*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*12.20*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;              &quot;&quot;&quot;),format.raw/*13.15*/(&quot;&quot;&quot;margin: 20px auto;</b>
+&nbsp;              border-collapse: collapse;
+&nbsp;              width: 80%;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*16.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*16.14*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*17.13*/(&quot;&quot;&quot;th, td &quot;&quot;&quot;),format.raw/*17.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*17.21*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;              &quot;&quot;&quot;),format.raw/*18.15*/(&quot;&quot;&quot;border: 1px solid #ddd;</b>
+&nbsp;              padding: 8px;
+&nbsp;              text-align: left;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*21.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*21.14*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*22.13*/(&quot;&quot;&quot;th &quot;&quot;&quot;),format.raw/*22.16*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*22.17*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;              &quot;&quot;&quot;),format.raw/*23.15*/(&quot;&quot;&quot;background-color: #e74c3c;</b>
+&nbsp;              color: white;
+<b class="fc">&nbsp;            &quot;&quot;&quot;),format.raw/*25.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*25.14*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;    &quot;&quot;&quot;),format.raw/*26.5*/(&quot;&quot;&quot;&lt;/style&gt;</b>
+&nbsp;  &lt;/head&gt;
+&nbsp;  &lt;body&gt;
+<b class="fc">&nbsp;    &lt;h1&gt;Word Statistics for: &quot;&quot;&quot;&quot;),_display_(/*29.32*/query),format.raw/*29.37*/(&quot;&quot;&quot;&quot;&lt;/h1&gt;</b>
+&nbsp;    &lt;table&gt;
+&nbsp;      &lt;thead&gt;
+&nbsp;        &lt;tr&gt;
+&nbsp;          &lt;th&gt;Word&lt;/th&gt;
+&nbsp;          &lt;th&gt;Count&lt;/th&gt;
+&nbsp;        &lt;/tr&gt;
+&nbsp;      &lt;/thead&gt;
+&nbsp;      &lt;tbody&gt;
+<b class="pc">&nbsp;      &quot;&quot;&quot;),_display_(/*38.8*/for((word, count) &lt;- wordStats) yield /*38.39*/ {_display_(Seq[Any](format.raw/*38.41*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;        &quot;&quot;&quot;),format.raw/*39.9*/(&quot;&quot;&quot;&lt;tr&gt;</b>
+<b class="fc">&nbsp;          &lt;td&gt;&quot;&quot;&quot;),_display_(/*40.16*/word),format.raw/*40.20*/(&quot;&quot;&quot;&lt;/td&gt;</b>
+<b class="fc">&nbsp;          &lt;td&gt;&quot;&quot;&quot;),_display_(/*41.16*/count),format.raw/*41.21*/(&quot;&quot;&quot;&lt;/td&gt;</b>
+&nbsp;        &lt;/tr&gt;
+<b class="fc">&nbsp;      &quot;&quot;&quot;)))}),format.raw/*43.8*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;      &quot;&quot;&quot;),format.raw/*44.7*/(&quot;&quot;&quot;&lt;/tbody&gt;</b>
+&nbsp;    &lt;/table&gt;
+&nbsp;  &lt;/body&gt;
+&nbsp;&lt;/html&gt;
+&nbsp;&quot;&quot;&quot;))
+&nbsp;      }
+&nbsp;    }
+&nbsp;  }
+&nbsp;
+<b class="fc">&nbsp;  def render(query:String,wordStats:Map[String, Integer]): play.twirl.api.HtmlFormat.Appendable = apply(query,wordStats)</b>
+&nbsp;
+<b class="nc">&nbsp;  def f:((String,Map[String, Integer]) =&gt; play.twirl.api.HtmlFormat.Appendable) = (query,wordStats) =&gt; apply(query,wordStats)</b>
+&nbsp;
+<b class="nc">&nbsp;  def ref: this.type = this</b>
+&nbsp;
+&nbsp;}
+&nbsp;
+&nbsp;
+&nbsp;              /*
+&nbsp;                  -- GENERATED --
+&nbsp;                  SOURCE: app/views/wordStats.scala.html
+&nbsp;                  HASH: a345ab265cda7b6683ca83a013433c67a1a7d3f1
+&nbsp;                  MATRIX: 932-&gt;1|1075-&gt;49|1105-&gt;53|1182-&gt;104|1207-&gt;109|1275-&gt;150|1303-&gt;151|1346-&gt;167|1496-&gt;289|1525-&gt;290|1567-&gt;304|1601-&gt;310|1630-&gt;311|1674-&gt;327|1803-&gt;428|1832-&gt;429|1874-&gt;443|1909-&gt;450|1938-&gt;451|1982-&gt;467|2109-&gt;566|2138-&gt;567|2180-&gt;581|2211-&gt;584|2240-&gt;585|2284-&gt;601|2381-&gt;670|2410-&gt;671|2443-&gt;677|2532-&gt;739|2558-&gt;744|2738-&gt;898|2785-&gt;929|2825-&gt;931|2862-&gt;941|2910-&gt;962|2935-&gt;966|2984-&gt;988|3010-&gt;993|3069-&gt;1022|3104-&gt;1030
+&nbsp;                  LINES: 27-&gt;1|32-&gt;1|34-&gt;3|36-&gt;5|36-&gt;5|38-&gt;7|38-&gt;7|39-&gt;8|42-&gt;11|42-&gt;11|43-&gt;12|43-&gt;12|43-&gt;12|44-&gt;13|47-&gt;16|47-&gt;16|48-&gt;17|48-&gt;17|48-&gt;17|49-&gt;18|52-&gt;21|52-&gt;21|53-&gt;22|53-&gt;22|53-&gt;22|54-&gt;23|56-&gt;25|56-&gt;25|57-&gt;26|60-&gt;29|60-&gt;29|69-&gt;38|69-&gt;38|69-&gt;38|70-&gt;39|71-&gt;40|71-&gt;40|72-&gt;41|72-&gt;41|74-&gt;43|75-&gt;44
+&nbsp;                  -- GENERATED --
+&nbsp;              */
+&nbsp;          
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

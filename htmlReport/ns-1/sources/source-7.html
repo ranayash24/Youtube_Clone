@@ -1,0 +1,338 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > WordStatActor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">actors</a>
+</div>
+
+<h1>Coverage Summary for Class: WordStatActor (actors)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">WordStatActor</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/22)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">WordStatActor$WordStatRequest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">WordStatActor$WordStatResponse</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (29/29)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package actors;
+&nbsp;
+&nbsp;import akka.actor.AbstractActor;
+&nbsp;import akka.actor.ActorRef;
+&nbsp;import akka.actor.Props;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;import java.util.function.Function;
+&nbsp;import java.util.stream.Collectors;
+&nbsp;
+&nbsp;/**
+&nbsp; * Actor responsible for calculating word-level statistics for a list of descriptions.
+&nbsp; *
+&nbsp; * &lt;p&gt;The {@code WordStatActor} processes a list of video descriptions, counts the occurrences
+&nbsp; * of words, and sorts them by frequency. It sends the result as a {@link WordStatResponse} back to
+&nbsp; * the requesting actor.&lt;/p&gt;
+&nbsp; *
+&nbsp; * &lt;p&gt;Messages handled by this actor include {@link WordStatRequest} for requesting word statistics
+&nbsp; * and {@link WordStatResponse} for providing results.&lt;/p&gt;
+&nbsp; */
+&nbsp;public class WordStatActor extends AbstractActor {
+&nbsp;
+&nbsp;    private final ActorRef userActor;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructs a {@code WordStatActor} instance.
+&nbsp;     *
+&nbsp;     * @param userActor the actor to send word statistics results to
+&nbsp;     */
+<b class="fc">&nbsp;    public WordStatActor(ActorRef userActor) {</b>
+<b class="fc">&nbsp;        this.userActor = userActor;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Factory method to create {@link Props} for the {@code WordStatActor}.
+&nbsp;     *
+&nbsp;     * @param userActor the actor to send results back to
+&nbsp;     * @return a {@link Props} instance for creating {@code WordStatActor} instances
+&nbsp;     */
+&nbsp;    public static Props props(ActorRef userActor) {
+<b class="fc">&nbsp;        return Props.create(WordStatActor.class, () -&gt; new WordStatActor(userActor));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Defines the receive behavior for the {@code WordStatActor}.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;This method listens for {@link WordStatRequest} messages, processes the descriptions
+&nbsp;     * to calculate word-level statistics, and sends a {@link WordStatResponse} back to the
+&nbsp;     * {@code userActor}.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * @return the receive behavior for handling messages
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public Receive createReceive() {
+<b class="fc">&nbsp;        return receiveBuilder()</b>
+<b class="fc">&nbsp;                .match(WordStatRequest.class, this::handleWordStatRequest)</b>
+<b class="fc">&nbsp;                .build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the {@link WordStatRequest} message to perform word statistics.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;Performs word count analysis on the provided descriptions and sorts the words by frequency.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * @param request the word statistics request containing the descriptions to analyze
+&nbsp;     */
+&nbsp;    private void handleWordStatRequest(WordStatRequest request) {
+<b class="fc">&nbsp;        System.out.println(&quot;WordStatActor received request for query: &quot; + request.query);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (request.descriptions == null || request.descriptions.isEmpty()) {</b>
+<b class="fc">&nbsp;            System.err.println(&quot;No descriptions provided for word statistics.&quot;);</b>
+<b class="fc">&nbsp;            userActor.tell(new WordStatResponse(request.query, Collections.emptyMap()), self());</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+&nbsp;        try {
+&nbsp;            // Perform word-level statistics on descriptions
+<b class="fc">&nbsp;            Map&lt;String, Long&gt; wordStats = request.descriptions.stream()</b>
+<b class="fc">&nbsp;                    .flatMap(description -&gt; Arrays.stream(description.toLowerCase().split(&quot;\\W+&quot;)))  // Split into words</b>
+<b class="fc">&nbsp;                    .filter(word -&gt; !word.isEmpty())  // Ignore empty words</b>
+<b class="fc">&nbsp;                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));  // Count occurrences</b>
+&nbsp;
+&nbsp;            // Sort words by frequency in descending order
+<b class="fc">&nbsp;            Map&lt;String, Long&gt; sortedWordStats = wordStats.entrySet().stream()</b>
+<b class="fc">&nbsp;                    .sorted(Map.Entry.&lt;String, Long&gt;comparingByValue(Comparator.reverseOrder()))</b>
+<b class="fc">&nbsp;                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -&gt; e1, LinkedHashMap::new));</b>
+&nbsp;
+&nbsp;            // Send the sorted word statistics response to the UserActor
+<b class="fc">&nbsp;            userActor.tell(new WordStatResponse(request.query, sortedWordStats), self());</b>
+<b class="fc">&nbsp;        } catch (Exception e) {</b>
+<b class="fc">&nbsp;            System.err.println(&quot;Error during word statistics calculation: &quot; + e.getMessage());</b>
+<b class="fc">&nbsp;            e.printStackTrace();</b>
+<b class="fc">&nbsp;            userActor.tell(new WordStatResponse(request.query, Collections.emptyMap()), self());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Message class representing a request for word-level statistics.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;The {@code WordStatRequest} contains the search query and a list of video descriptions to analyze.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * &lt;p&gt;Instances of this class are immutable and are used to pass data between actors.&lt;/p&gt;
+&nbsp;     */
+&nbsp;    public static class WordStatRequest {
+&nbsp;        /**
+&nbsp;         * The search query string associated with the request.
+&nbsp;         */
+&nbsp;        public final String query;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * The list of video descriptions to analyze.
+&nbsp;         */
+&nbsp;        public final List&lt;String&gt; descriptions;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Constructs a {@code WordStatRequest} instance.
+&nbsp;         *
+&nbsp;         * @param query        the search query string
+&nbsp;         * @param descriptions the list of video descriptions to analyze
+&nbsp;         */
+<b class="fc">&nbsp;        public WordStatRequest(String query, List&lt;String&gt; descriptions) {</b>
+<b class="fc">&nbsp;            this.query = query;</b>
+<b class="fc">&nbsp;            this.descriptions = descriptions;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Message class representing the results of word-level statistics.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;The {@code WordStatResponse} contains the search query and the sorted word statistics.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * &lt;p&gt;Instances of this class are immutable and are used to pass data between actors.&lt;/p&gt;
+&nbsp;     */
+&nbsp;    public static class WordStatResponse {
+&nbsp;        /**
+&nbsp;         * The search query associated with the word statistics result.
+&nbsp;         */
+&nbsp;        final String query;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * The sorted word statistics as a map, with words as keys and their frequencies as values.
+&nbsp;         */
+&nbsp;        final Map&lt;String, Long&gt; wordStats;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Constructs a {@code WordStatResponse} instance.
+&nbsp;         *
+&nbsp;         * @param query     the search query
+&nbsp;         * @param wordStats the sorted word statistics
+&nbsp;         */
+<b class="fc">&nbsp;        public WordStatResponse(String query, Map&lt;String, Long&gt; wordStats) {</b>
+<b class="fc">&nbsp;            this.query = query;</b>
+<b class="fc">&nbsp;            this.wordStats = wordStats;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Provides a string representation of the word statistics response.
+&nbsp;         *
+&nbsp;         * @return a string representing the {@code WordStatResponse}
+&nbsp;         */
+&nbsp;        @Override
+&nbsp;        public String toString() {
+<b class="fc">&nbsp;            return &quot;WordStatResponse{&quot; +</b>
+&nbsp;                    &quot;query=&#39;&quot; + query + &#39;\&#39;&#39; +
+&nbsp;                    &quot;, wordStats=&quot; + wordStats +
+&nbsp;                    &#39;}&#39;;
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

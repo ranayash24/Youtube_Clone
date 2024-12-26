@@ -1,0 +1,250 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > VideoDetailsActor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">actors</a>
+</div>
+
+<h1>Coverage Summary for Class: VideoDetailsActor (actors)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">VideoDetailsActor</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">VideoDetailsActor$FetchVideoDetails</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">VideoDetailsActor$VideoDetailsResponse</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package actors;
+&nbsp;
+&nbsp;import akka.actor.AbstractActor;
+&nbsp;import akka.actor.Props;
+&nbsp;import services.YouTubeService;
+&nbsp;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;/**
+&nbsp; * Actor responsible for fetching video details using the {@link YouTubeService}.
+&nbsp; */
+&nbsp;public class VideoDetailsActor extends AbstractActor {
+&nbsp;    private final YouTubeService youTubeService;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructs a VideoDetailsActor instance.
+&nbsp;     *
+&nbsp;     * @param youTubeService The YouTubeService used to fetch video details.
+&nbsp;     */
+<b class="fc">&nbsp;    public VideoDetailsActor(YouTubeService youTubeService) {</b>
+<b class="fc">&nbsp;        this.youTubeService = youTubeService;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates the Props for the VideoDetailsActor.
+&nbsp;     *
+&nbsp;     * @param youTubeService The YouTubeService to be used by the actor.
+&nbsp;     * @return Props for creating the VideoDetailsActor.
+&nbsp;     */
+&nbsp;    public static Props props(YouTubeService youTubeService) {
+<b class="fc">&nbsp;        return Props.create(VideoDetailsActor.class, () -&gt; new VideoDetailsActor(youTubeService));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Defines the behavior of the actor, specifying how messages are handled.
+&nbsp;     *
+&nbsp;     * @return Receive object defining the actor&#39;s message-handling behavior.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public Receive createReceive() {
+<b class="fc">&nbsp;        return receiveBuilder()</b>
+<b class="fc">&nbsp;                .match(FetchVideoDetails.class, this::handleFetchVideoDetails)</b>
+<b class="fc">&nbsp;                .build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the {@link FetchVideoDetails} message by fetching video details
+&nbsp;     * and sending a {@link VideoDetailsResponse} back to the sender.
+&nbsp;     *
+&nbsp;     * @param request The FetchVideoDetails message containing the video ID.
+&nbsp;     */
+&nbsp;    private void handleFetchVideoDetails(FetchVideoDetails request) {
+<b class="fc">&nbsp;        Map&lt;String, String&gt; videoDetails = youTubeService.getVideoDetails(request.videoId);</b>
+<b class="fc">&nbsp;        sender().tell(new VideoDetailsResponse(request.videoId, videoDetails), self());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Message class for requesting video details.
+&nbsp;     */
+&nbsp;    public static class FetchVideoDetails {
+&nbsp;        /**
+&nbsp;         * The ID of the video whose details are being requested.
+&nbsp;         */
+&nbsp;        public final String videoId;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Constructs a FetchVideoDetails message.
+&nbsp;         *
+&nbsp;         * @param videoId The ID of the video to fetch details for.
+&nbsp;         */
+<b class="fc">&nbsp;        public FetchVideoDetails(String videoId) {</b>
+<b class="fc">&nbsp;            this.videoId = videoId;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Message class for responding with video details.
+&nbsp;     */
+&nbsp;    public static class VideoDetailsResponse {
+&nbsp;        /**
+&nbsp;         * The ID of the video for which details are provided.
+&nbsp;         */
+&nbsp;        public final String videoId;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * The details of the video as a map of key-value pairs.
+&nbsp;         */
+&nbsp;        public final Map&lt;String, String&gt; videoDetails;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Constructs a VideoDetailsResponse message.
+&nbsp;         *
+&nbsp;         * @param videoId      The ID of the video.
+&nbsp;         * @param videoDetails A map containing the details of the video.
+&nbsp;         */
+<b class="fc">&nbsp;        public VideoDetailsResponse(String videoId, Map&lt;String, String&gt; videoDetails) {</b>
+<b class="fc">&nbsp;            this.videoId = videoId;</b>
+<b class="fc">&nbsp;            this.videoDetails = videoDetails;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

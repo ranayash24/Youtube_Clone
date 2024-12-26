@@ -1,0 +1,296 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ChannelProfileActor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">actors</a>
+</div>
+
+<h1>Coverage Summary for Class: ChannelProfileActor (actors)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChannelProfileActor</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ChannelProfileActor$ChannelProfileResponse</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ChannelProfileActor$FetchChannelProfile</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/19)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package actors;
+&nbsp;
+&nbsp;import akka.actor.AbstractActor;
+&nbsp;import akka.actor.Props;
+&nbsp;import com.fasterxml.jackson.databind.JsonNode;
+&nbsp;import play.libs.Json;
+&nbsp;import services.YouTubeService;
+&nbsp;
+&nbsp;import java.util.Map;
+&nbsp;import java.util.concurrent.CompletableFuture;
+&nbsp;
+&nbsp;/**
+&nbsp; * Actor responsible for fetching and returning YouTube channel profile data.
+&nbsp; * &lt;p&gt;
+&nbsp; * This actor communicates with the {@link YouTubeService} to fetch channel profile data
+&nbsp; * and sends the response back to the sender.
+&nbsp; */
+&nbsp;public class ChannelProfileActor extends AbstractActor {
+&nbsp;
+&nbsp;    private final YouTubeService youtubeService;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructor for ChannelProfileActor.
+&nbsp;     *
+&nbsp;     * @param youtubeService the YouTubeService used to fetch channel profile data
+&nbsp;     */
+<b class="fc">&nbsp;    public ChannelProfileActor(YouTubeService youtubeService) {</b>
+<b class="fc">&nbsp;        this.youtubeService = youtubeService;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a {@link Props} instance for the ChannelProfileActor.
+&nbsp;     *
+&nbsp;     * @param youtubeService the YouTubeService used to fetch channel profile data
+&nbsp;     * @return a Props instance to create the actor
+&nbsp;     */
+&nbsp;    public static Props props(YouTubeService youtubeService) {
+<b class="fc">&nbsp;        return Props.create(ChannelProfileActor.class, youtubeService);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Defines the actor&#39;s behavior by specifying how it reacts to incoming messages.
+&nbsp;     *
+&nbsp;     * @return a Receive object defining the message handling logic
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public Receive createReceive() {
+<b class="fc">&nbsp;        return receiveBuilder()</b>
+<b class="fc">&nbsp;                .match(FetchChannelProfile.class, this::handleFetchChannelProfile)</b>
+<b class="fc">&nbsp;                .build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the FetchChannelProfile message by invoking the YouTubeService to fetch profile data.
+&nbsp;     * Once the data is fetched, it sends a ChannelProfileResponse message back to the sender.
+&nbsp;     *
+&nbsp;     * @param request the FetchChannelProfile message containing the channel ID
+&nbsp;     */
+&nbsp;    private void handleFetchChannelProfile(FetchChannelProfile request) {
+<b class="fc">&nbsp;        CompletableFuture&lt;Map&lt;String, Object&gt;&gt; profileFuture = youtubeService.fetchChannelProfile(request.channelId);</b>
+&nbsp;
+<b class="fc">&nbsp;        profileFuture.thenAccept(profileData -&gt; {</b>
+&nbsp;            ChannelProfileResponse response;
+<b class="fc">&nbsp;            if (profileData.isEmpty()) {</b>
+<b class="fc">&nbsp;                response = new ChannelProfileResponse(request.channelId, null, &quot;Channel profile not found&quot;);</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                JsonNode jsonResponse = Json.toJson(profileData);</b>
+<b class="fc">&nbsp;                response = new ChannelProfileResponse(request.channelId, jsonResponse, null);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            sender().tell(response, self());</b>
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Message class representing a request to fetch a YouTube channel profile.
+&nbsp;     */
+&nbsp;    public static class FetchChannelProfile {
+&nbsp;        /**
+&nbsp;         * The ID of the YouTube channel.
+&nbsp;         */
+&nbsp;        public final String channelId;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Constructor for FetchChannelProfile.
+&nbsp;         *
+&nbsp;         * @param channelId the ID of the YouTube channel to fetch the profile for
+&nbsp;         */
+<b class="fc">&nbsp;        public FetchChannelProfile(String channelId) {</b>
+<b class="fc">&nbsp;            this.channelId = channelId;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Message class representing a response containing the YouTube channel profile data.
+&nbsp;     */
+&nbsp;    public static class ChannelProfileResponse {
+&nbsp;        /**
+&nbsp;         * The ID of the YouTube channel.
+&nbsp;         */
+&nbsp;        public final String channelId;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * The profile data of the YouTube channel as a JSON object.
+&nbsp;         * This is null if there was an error or the channel was not found.
+&nbsp;         */
+&nbsp;        public final JsonNode profileData;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * An error message if the channel profile could not be fetched.
+&nbsp;         * This is null if the request was successful.
+&nbsp;         */
+&nbsp;        public final String error;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Constructor for ChannelProfileResponse.
+&nbsp;         *
+&nbsp;         * @param channelId   the ID of the YouTube channel
+&nbsp;         * @param profileData the profile data of the channel as a JSON object
+&nbsp;         * @param error       an error message if the profile could not be fetched
+&nbsp;         */
+<b class="fc">&nbsp;        public ChannelProfileResponse(String channelId, JsonNode profileData, String error) {</b>
+<b class="fc">&nbsp;            this.channelId = channelId;</b>
+<b class="fc">&nbsp;            this.profileData = profileData;</b>
+<b class="fc">&nbsp;            this.error = error;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

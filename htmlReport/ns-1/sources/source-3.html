@@ -1,0 +1,332 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > SentimentActor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">actors</a>
+</div>
+
+<h1>Coverage Summary for Class: SentimentActor (actors)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SentimentActor</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    76%
+  </span>
+  <span class="absValue">
+    (19/25)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SentimentActor$SentimentRequest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">SentimentActor$SentimentResponse</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.2%
+  </span>
+  <span class="absValue">
+    (26/32)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package actors;
+&nbsp;
+&nbsp;import akka.actor.AbstractActor;
+&nbsp;import akka.actor.ActorRef;
+&nbsp;import akka.actor.Props;
+&nbsp;import utils.SentimentAnalyser;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.stream.Collectors;
+&nbsp;
+&nbsp;/**
+&nbsp; * Actor responsible for analyzing the sentiment of video descriptions for a given query.
+&nbsp; *
+&nbsp; * &lt;p&gt;The {@code SentimentActor} uses the {@link SentimentAnalyser} utility to perform
+&nbsp; * sentiment analysis on individual descriptions and compute the overall sentiment
+&nbsp; * for the query. Results are sent back to the requesting {@link UserActor}.&lt;/p&gt;
+&nbsp; *
+&nbsp; * &lt;p&gt;Messages handled by this actor include {@link SentimentRequest} and result responses
+&nbsp; * as {@link SentimentResponse}.&lt;/p&gt;
+&nbsp; *
+&nbsp; * @author Devang Shah
+&nbsp; */
+&nbsp;public class SentimentActor extends AbstractActor {
+&nbsp;
+&nbsp;    private final SentimentAnalyser sentimentAnalyser;
+&nbsp;    private final ActorRef userActor;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructs a {@code SentimentActor} instance.
+&nbsp;     *
+&nbsp;     * @param sentimentAnalyser the utility class used for sentiment analysis
+&nbsp;     * @param userActor         the actor to send sentiment analysis results to
+&nbsp;     */
+<b class="fc">&nbsp;    public SentimentActor(SentimentAnalyser sentimentAnalyser, ActorRef userActor) {</b>
+<b class="fc">&nbsp;        this.sentimentAnalyser = sentimentAnalyser;</b>
+<b class="fc">&nbsp;        this.userActor = userActor;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Factory method to create {@link Props} for the {@code SentimentActor}.
+&nbsp;     *
+&nbsp;     * @param sentimentAnalyser the {@link SentimentAnalyser} instance to be used
+&nbsp;     * @param userActor         the actor to send results back to
+&nbsp;     * @return a {@link Props} instance for creating {@code SentimentActor} instances
+&nbsp;     */
+&nbsp;    public static Props props(SentimentAnalyser sentimentAnalyser, ActorRef userActor) {
+<b class="fc">&nbsp;        return Props.create(SentimentActor.class, () -&gt; new SentimentActor(sentimentAnalyser, userActor));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Defines the receive behavior for the {@code SentimentActor}.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;This method listens for {@link SentimentRequest} messages, performs sentiment
+&nbsp;     * analysis using the {@link SentimentAnalyser}, and sends a {@link SentimentResponse}
+&nbsp;     * back to the {@code UserActor}.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * @return the receive behavior for handling messages
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public Receive createReceive() {
+<b class="fc">&nbsp;        return receiveBuilder()</b>
+<b class="fc">&nbsp;                .match(SentimentRequest.class, this::handleSentimentRequest)</b>
+<b class="fc">&nbsp;                .build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the {@link SentimentRequest} message to perform sentiment analysis.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;Performs analysis on the provided descriptions, computes the overall sentiment,
+&nbsp;     * and sends the results back as a {@link SentimentResponse}.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * @param request the sentiment analysis request containing the query and descriptions
+&nbsp;     */
+&nbsp;    private void handleSentimentRequest(SentimentRequest request) {
+<b class="fc">&nbsp;        System.out.println(&quot;SentimentActor received request for query: &quot; + request.query);</b>
+&nbsp;
+<b class="pc">&nbsp;        if (request.descriptions == null || request.descriptions.isEmpty()) {</b>
+<b class="fc">&nbsp;            System.err.println(&quot;No descriptions provided for sentiment analysis.&quot;);</b>
+<b class="fc">&nbsp;            userActor.tell(</b>
+<b class="fc">&nbsp;                    new SentimentResponse(request.query, List.of(), &quot;neutral&quot;),</b>
+<b class="fc">&nbsp;                    self()</b>
+&nbsp;            );
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+&nbsp;        try {
+&nbsp;            // Perform sentiment analysis on descriptions
+<b class="fc">&nbsp;            List&lt;String&gt; sentiments = request.descriptions.stream()</b>
+<b class="fc">&nbsp;                    .map(sentimentAnalyser::analyzeDescription)</b>
+<b class="fc">&nbsp;                    .collect(Collectors.toList());</b>
+&nbsp;
+<b class="fc">&nbsp;            String overallSentiment = sentimentAnalyser.analyzeOverallSentiment(request.descriptions);</b>
+&nbsp;
+&nbsp;            // Create a response object
+<b class="fc">&nbsp;            SentimentResponse response = new SentimentResponse(request.query, sentiments, overallSentiment);</b>
+&nbsp;
+&nbsp;            // Send response to UserActor
+<b class="fc">&nbsp;            userActor.tell(response, self());</b>
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            System.err.println(&quot;Error during sentiment analysis: &quot; + e.getMessage());</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;            userActor.tell(</b>
+<b class="nc">&nbsp;                    new SentimentResponse(request.query, List.of(), &quot;neutral&quot;),</b>
+<b class="nc">&nbsp;                    self()</b>
+&nbsp;            );
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Message class representing a request for sentiment analysis.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;The {@code SentimentRequest} contains the search query and a list of
+&nbsp;     * video descriptions to analyze.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * &lt;p&gt;Instances of this class are immutable and are used to pass data between actors.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * @author Devang Shah
+&nbsp;     */
+&nbsp;    public static class SentimentRequest {
+&nbsp;        public final String query;
+&nbsp;        public final List&lt;String&gt; descriptions;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Constructs a {@code SentimentRequest} instance.
+&nbsp;         *
+&nbsp;         * @param query        the search query string
+&nbsp;         * @param descriptions the list of video descriptions to analyze
+&nbsp;         */
+<b class="fc">&nbsp;        public SentimentRequest(String query, List&lt;String&gt; descriptions) {</b>
+<b class="fc">&nbsp;            this.query = query;</b>
+<b class="fc">&nbsp;            this.descriptions = descriptions;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Message class representing the results of sentiment analysis.
+&nbsp;     *
+&nbsp;     * &lt;p&gt;The {@code SentimentResponse} contains the search query, individual sentiments
+&nbsp;     * for each description, and the overall sentiment for the query.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * &lt;p&gt;Instances of this class are immutable and are used to pass data between actors.&lt;/p&gt;
+&nbsp;     *
+&nbsp;     * @author Devang Shah
+&nbsp;     */
+&nbsp;    public static class SentimentResponse {
+&nbsp;        public final String query;
+&nbsp;        public final List&lt;String&gt; sentiments;
+&nbsp;        public final String overallSentiment;
+&nbsp;
+&nbsp;        /**
+&nbsp;         * Constructs a {@code SentimentResponse} instance.
+&nbsp;         *
+&nbsp;         * @param query           the search query string
+&nbsp;         * @param sentiments      the list of sentiments for individual descriptions
+&nbsp;         * @param overallSentiment the overall sentiment for the query
+&nbsp;         */
+<b class="fc">&nbsp;        public SentimentResponse(String query, List&lt;String&gt; sentiments, String overallSentiment) {</b>
+<b class="fc">&nbsp;            this.query = query;</b>
+<b class="fc">&nbsp;            this.sentiments = sentiments;</b>
+<b class="fc">&nbsp;            this.overallSentiment = overallSentiment;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

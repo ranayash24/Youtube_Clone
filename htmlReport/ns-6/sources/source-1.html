@@ -1,0 +1,326 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ReadabilityScoreUtil</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">utils</a>
+</div>
+
+<h1>Coverage Summary for Class: ReadabilityScoreUtil (utils)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReadabilityScoreUtil</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (28/28)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (40/40)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package utils;
+&nbsp;
+&nbsp;/**
+&nbsp; * Utility class for calculating readability scores for text content.
+&nbsp; * This class provides methods to calculate various readability scores
+&nbsp; * based on the content of a text, with a primary focus on the Flesch-Kincaid
+&nbsp; * Grade Level. The Flesch-Kincaid Grade Level is a readability test designed
+&nbsp; * to indicate the complexity of English text based on sentence length, word
+&nbsp; * length, and syllable count.
+&nbsp; *
+&nbsp; * &lt;p&gt;
+&nbsp; * This class includes the following functionality:
+&nbsp; * &lt;ul&gt;
+&nbsp; *   &lt;li&gt;Calculating the Flesch-Kincaid Grade Level for a given text.&lt;/li&gt;
+&nbsp; *   &lt;li&gt;Supporting methods for counting words, sentences, and syllables.&lt;/li&gt;
+&nbsp; *   &lt;li&gt;Handling non-English or empty content by returning a default score.&lt;/li&gt;
+&nbsp; * &lt;/ul&gt;
+&nbsp; *
+&nbsp; *
+&nbsp; * &lt;p&gt;
+&nbsp; * Example usage:
+&nbsp; * &lt;pre&gt;
+&nbsp; *     String content = &quot;This is a sample text.&quot;;
+&nbsp; *     double gradeLevel = ReadabilityScoreUtil.calculateFleschKincaidGradeLevel(content);
+&nbsp; *     System.out.println(&quot;Grade Level: &quot; + gradeLevel);
+&nbsp; * &lt;/pre&gt;
+&nbsp; *
+&nbsp; *
+&nbsp; * @see &lt;a href=&quot;https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests&quot;&gt;Flesch-Kincaid Readability Tests&lt;/a&gt;
+&nbsp; *
+&nbsp; * @author Khushi
+&nbsp; */
+<b class="fc">&nbsp;public class ReadabilityScoreUtil {</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Calculates the Flesch-Kincaid Grade Level for a given text content.
+&nbsp;     * The Flesch-Kincaid Grade Level is a readability test designed to indicate
+&nbsp;     * the complexity of English text based on the number of words, sentences,
+&nbsp;     * and syllables in the content.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * The formula used is:
+&nbsp;     * &lt;pre&gt;
+&nbsp;     *   (0.39 * (words / sentences)) + (11.8 * (syllables / words)) - 15.59
+&nbsp;     * &lt;/pre&gt;
+&nbsp;     * This method returns a grade level which represents the years of education
+&nbsp;     * required to understand the content.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * If the content is not in English or is empty, the method returns 0.
+&nbsp;     *
+&nbsp;     * @param content The text content for which the Flesch-Kincaid Grade Level is calculated.
+&nbsp;     * @return The Flesch-Kincaid Grade Level score for the content. Returns 0 if the content is not in English or is empty.
+&nbsp;     */
+&nbsp;    public static double calculateFleschKincaidGradeLevel(String content) {
+<b class="fc">&nbsp;        if (isNotEnglish(content) || content.isEmpty()) {</b>
+<b class="fc">&nbsp;            return 0;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        int sentences = countSentences(content);</b>
+<b class="fc">&nbsp;        int words = countWords(content);</b>
+<b class="fc">&nbsp;        int syllables = countTotalSyllables(content);  // Use renamed method</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        double score = (0.39 * ((double) words / sentences)) + (11.8 * ((double) syllables / words)) - 15.59;</b>
+<b class="fc">&nbsp;        return Double.isNaN(score) ? 0 : score;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Calculates the Flesch Reading Ease score for a given text content.
+&nbsp;     * The Flesch Reading Ease score is a readability test designed to indicate
+&nbsp;     * how easy or difficult it is to understand a piece of English text.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * The formula used is:
+&nbsp;     * &lt;pre&gt;
+&nbsp;     *   206.835 - (1.015 * (words / sentences)) - (84.6 * (syllables / words))
+&nbsp;     * &lt;/pre&gt;
+&nbsp;     * This method returns a score that ranges from 0 to 100. Higher scores
+&nbsp;     * indicate easier-to-read text, and lower scores indicate more difficult text.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * If the content is not in English or is empty, the method returns 0.
+&nbsp;     *
+&nbsp;     * @param content The text content for which the Flesch Reading Ease score is calculated.
+&nbsp;     * @return The Flesch Reading Ease score for the content. Returns 0 if the content is not in English or is empty.
+&nbsp;     *
+&nbsp;     */
+&nbsp;    public static double calculateFleschReadingEaseScore(String content) {
+<b class="fc">&nbsp;        if (isNotEnglish(content) || content.isEmpty()) {</b>
+<b class="fc">&nbsp;            return 0;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        int sentences = countSentences(content);</b>
+<b class="fc">&nbsp;        int words = countWords(content);</b>
+<b class="fc">&nbsp;        int syllables = countTotalSyllables(content);  // Use renamed method</b>
+&nbsp;
+<b class="fc">&nbsp;        double score = 206.835 - (1.015 * ((double) words / sentences)) - (84.6 * ((double) syllables / words));</b>
+<b class="fc">&nbsp;        return Double.isNaN(score) ? 0 : score;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Counts the number of sentences in a given text content.
+&nbsp;     * A sentence is considered to end with one of the following punctuation marks: period (.),
+&nbsp;     * exclamation mark (!), or question mark (?).
+&nbsp;     * &lt;p&gt;
+&nbsp;     * This method splits the content by the sentence-ending punctuation marks and counts the resulting segments.
+&nbsp;     * Note that this method does not handle edge cases like abbreviations, decimal numbers, or other sentence delimiters.
+&nbsp;     *
+&nbsp;     * @param content The text content in which sentences are to be counted.
+&nbsp;     * @return The number of sentences in the content.
+&nbsp;     */
+&nbsp;    public static int countSentences(String content) {
+<b class="fc">&nbsp;        return content.split(&quot;[.!?]&quot;).length;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Counts the number of words in the given text content.
+&nbsp;     * The method first removes any non-alphanumeric characters (except spaces) from the content,
+&nbsp;     * then splits the content by whitespace to count the words.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Words are defined as sequences of alphanumeric characters separated by spaces.
+&nbsp;     * Punctuation and other non-alphanumeric characters are ignored in the word count.
+&nbsp;     *
+&nbsp;     * @param content The text content in which words are to be counted.
+&nbsp;     * @return The number of words in the content.
+&nbsp;     */
+&nbsp;    public static int countWords(String content) {
+<b class="fc">&nbsp;        String cleanedContent = content.replaceAll(&quot;[^a-zA-Z0-9\\s]&quot;, &quot; &quot;);</b>
+<b class="fc">&nbsp;        return cleanedContent.split(&quot;\\s+&quot;).length;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Counts the total number of syllables in the given text content.
+&nbsp;     * The method first removes punctuation and converts the content to lowercase,
+&nbsp;     * then splits the content into individual words to count the syllables in each word.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * It uses the helper method {@link #countSyllablesInWord(String)} to count syllables in each word.
+&nbsp;     *
+&nbsp;     * @param s The text content in which syllables are to be counted.
+&nbsp;     * @return The total number of syllables in the content.
+&nbsp;     */
+&nbsp;    public static int countTotalSyllables(String s) {
+&nbsp;        // Clean the content by removing punctuation
+<b class="fc">&nbsp;        String cleanedContent = s.replaceAll(&quot;[^a-zA-Z0-9\\s]&quot;, &quot; &quot;).toLowerCase();</b>
+<b class="fc">&nbsp;        int count = 0;</b>
+&nbsp;
+&nbsp;        // Split into words for syllable counting
+<b class="fc">&nbsp;        String[] words = cleanedContent.split(&quot;\\s+&quot;);</b>
+<b class="fc">&nbsp;        for (String word : words) {</b>
+<b class="fc">&nbsp;            count += countSyllablesInWord(word);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return count;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Counts the number of syllables in a single word.
+&nbsp;     * The method treats consecutive vowels as one syllable and applies special rules for silent &#39;e&#39; at the end of words.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * It processes the word by first converting it to lowercase and removing non-letter characters.
+&nbsp;     * It then counts syllables based on the presence of vowels, ensuring that silent &#39;e&#39; at the end of words is considered.
+&nbsp;     *
+&nbsp;     * @param word The word for which syllables need to be counted.
+&nbsp;     * @return The number of syllables in the word. If no syllables are detected, at least 1 syllable is returned.
+&nbsp;     */
+&nbsp;    public static int countSyllablesInWord(String word) {
+<b class="fc">&nbsp;        word = word.toLowerCase().replaceAll(&quot;[^a-zA-Z]&quot;, &quot; &quot;); // Remove non-letter characters</b>
+<b class="fc">&nbsp;        if (word.length() == 0) return 0; // Handle empty words</b>
+&nbsp;
+<b class="fc">&nbsp;        boolean lastWasVowel = false;</b>
+<b class="fc">&nbsp;        int count = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;        for (int i = 0; i &lt; word.length(); i++) {</b>
+<b class="fc">&nbsp;            char wc = word.charAt(i);</b>
+<b class="fc">&nbsp;            if (isVowel(wc)) {</b>
+<b class="fc">&nbsp;                if (!lastWasVowel) {</b>
+<b class="fc">&nbsp;                    count++;</b>
+&nbsp;                }
+<b class="fc">&nbsp;                lastWasVowel = true;</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                lastWasVowel = false;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;        // If the word ends with a silent &#39;e&#39;, decrease syllable count by 1, but only if count is greater than 1
+&nbsp;        // Ensure we only apply this rule if the syllable count is reasonable (e.g., greater than 1)
+<b class="fc">&nbsp;        if (word.endsWith(&quot;e&quot;) &amp;&amp; count &gt; 1) {</b>
+<b class="fc">&nbsp;            count--;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // Make sure to return at least 1 syllable, as most words have at least one syllable
+<b class="fc">&nbsp;        return Math.max(count, 1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks if the given character is a vowel.
+&nbsp;     * This method checks if the character belongs to the set of vowels (&#39;a&#39;, &#39;e&#39;, &#39;i&#39;, &#39;o&#39;, &#39;u&#39;, &#39;y&#39;).
+&nbsp;     *
+&nbsp;     * @param c The character to check.
+&nbsp;     * @return {@code true} if the character is a vowel, {@code false} otherwise.
+&nbsp;     */
+&nbsp;    public static boolean isVowel(char c) {
+<b class="fc">&nbsp;        return &quot;aeiouy&quot;.indexOf(c) != -1;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks if the given content is written in a non-English script (specifically in Hindi).
+&nbsp;     * This method uses a regular expression to detect the presence of characters in the Unicode range for Hindi.
+&nbsp;     *
+&nbsp;     * @param content The content to check.
+&nbsp;     * @return {@code true} if the content contains non-English (Hindi) characters, {@code false} otherwise.
+&nbsp;     */
+&nbsp;    public static boolean isNotEnglish(String content) {
+<b class="fc">&nbsp;        return content.matches(&quot;.*[\\u0900-\\u097F]+.*&quot;);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

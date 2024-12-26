@@ -1,0 +1,179 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > searchResults</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">views.html</a>
+</div>
+
+<h1>Coverage Summary for Class: searchResults (views.html)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+  <tr>
+    <td class="name">searchResults$</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    56.2%
+  </span>
+  <span class="absValue">
+    (9/16)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    56.2%
+  </span>
+  <span class="absValue">
+    (9/16)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package views.html
+&nbsp;
+&nbsp;import _root_.play.twirl.api.TwirlFeatureImports._
+&nbsp;import _root_.play.twirl.api.TwirlHelperImports._
+&nbsp;import _root_.play.twirl.api.Html
+&nbsp;import _root_.play.twirl.api.JavaScript
+&nbsp;import _root_.play.twirl.api.Txt
+&nbsp;import _root_.play.twirl.api.Xml
+&nbsp;import models._
+&nbsp;import controllers._
+&nbsp;import play.api.i18n._
+&nbsp;import views.html._
+&nbsp;import play.api.templates.PlayMagic._
+&nbsp;import java.lang._
+&nbsp;import java.util._
+&nbsp;import play.core.j.PlayMagicForJava._
+&nbsp;import play.mvc._
+&nbsp;import play.api.data.Field
+&nbsp;import play.data._
+&nbsp;import play.core.j.PlayFormsMagicForJava._
+&nbsp;import scala.jdk.CollectionConverters._
+&nbsp;
+<b class="fc">&nbsp;object searchResults extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[String,List[Map[String, String]],play.twirl.api.HtmlFormat.Appendable] {</b>
+&nbsp;
+&nbsp;  /**/
+&nbsp;  def apply/*1.2*/(query: String, videos: List[Map[String, String]]):play.twirl.api.HtmlFormat.Appendable = {
+<b class="fc">&nbsp;    _display_ {</b>
+&nbsp;      {
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;Seq[Any](format.raw/*1.52*/(&quot;&quot;&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;&quot;&quot;&quot;),_display_(/*3.2*/main(&quot;Videos for Tag: &quot; + query)/*3.34*/ {_display_(Seq[Any](format.raw/*3.36*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;&quot;&quot;&quot;),format.raw/*4.1*/(&quot;&quot;&quot;&lt;h1&gt;Search Results for Tag: &quot;&quot;&quot;),_display_(/*4.30*/query),format.raw/*4.35*/(&quot;&quot;&quot;&lt;/h1&gt;</b>
+<b class="fc">&nbsp;&quot;&quot;&quot;),_display_(/*5.2*/for(video &lt;- videos) yield /*5.22*/ {_display_(Seq[Any](format.raw/*5.24*/(&quot;&quot;&quot;</b>
+<b class="nc">&nbsp;&quot;&quot;&quot;),format.raw/*6.1*/(&quot;&quot;&quot;&lt;div class=&quot;video-item&quot;&gt;</b>
+<b class="nc">&nbsp;    &lt;img src=&quot;&quot;&quot;&quot;),_display_(/*7.16*/video/*7.21*/.get(&quot;thumbnailUrl&quot;)),format.raw/*7.41*/(&quot;&quot;&quot;&quot; alt=&quot;Video Thumbnail&quot; /&gt;</b>
+<b class="nc">&nbsp;    &lt;p&gt;&lt;strong&gt;Title:&lt;/strong&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=&quot;&quot;&quot;),_display_(/*8.74*/video/*8.79*/.get(&quot;videoId&quot;)),format.raw/*8.94*/(&quot;&quot;&quot;&quot; target=&quot;_blank&quot;&gt;&quot;&quot;&quot;),_display_(/*8.113*/video/*8.118*/.get(&quot;title&quot;)),format.raw/*8.131*/(&quot;&quot;&quot;&lt;/a&gt;&lt;/p&gt;</b>
+<b class="nc">&nbsp;    &lt;p&gt;&lt;strong&gt;Channel:&lt;/strong&gt; &lt;a href=&quot;&quot;&quot;&quot;),_display_(/*9.44*/routes/*9.50*/.YouTubeController.fetchChannelProfile(video.get(&quot;channelId&quot;))),format.raw/*9.112*/(&quot;&quot;&quot;&quot;&gt;&quot;&quot;&quot;),_display_(/*9.115*/video/*9.120*/.get(&quot;channelTitle&quot;)),format.raw/*9.140*/(&quot;&quot;&quot;&lt;/a&gt;&lt;/p&gt;</b>
+<b class="nc">&nbsp;    &lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt; &quot;&quot;&quot;),_display_(/*10.39*/video/*10.44*/.get(&quot;description&quot;)),format.raw/*10.63*/(&quot;&quot;&quot;&lt;/p&gt;</b>
+&nbsp;&lt;/div&gt;
+&nbsp;&lt;hr/&gt;
+<b class="fc">&nbsp;&quot;&quot;&quot;)))}),format.raw/*13.2*/(&quot;&quot;&quot;</b>
+<b class="fc">&nbsp;&quot;&quot;&quot;)))}),format.raw/*14.2*/(&quot;&quot;&quot;</b>
+&nbsp;&quot;&quot;&quot;))
+&nbsp;      }
+&nbsp;    }
+&nbsp;  }
+&nbsp;
+<b class="fc">&nbsp;  def render(query:String,videos:List[Map[String, String]]): play.twirl.api.HtmlFormat.Appendable = apply(query,videos)</b>
+&nbsp;
+<b class="nc">&nbsp;  def f:((String,List[Map[String, String]]) =&gt; play.twirl.api.HtmlFormat.Appendable) = (query,videos) =&gt; apply(query,videos)</b>
+&nbsp;
+<b class="nc">&nbsp;  def ref: this.type = this</b>
+&nbsp;
+&nbsp;}
+&nbsp;
+&nbsp;
+&nbsp;              /*
+&nbsp;                  -- GENERATED --
+&nbsp;                  SOURCE: app/views/searchResults.scala.html
+&nbsp;                  HASH: 5b8ca33e3cfcd466c2ef2f227de6dadb737bdfc3
+&nbsp;                  MATRIX: 941-&gt;1|1086-&gt;51|1116-&gt;56|1156-&gt;88|1195-&gt;90|1223-&gt;92|1278-&gt;121|1303-&gt;126|1336-&gt;134|1371-&gt;154|1410-&gt;156|1438-&gt;158|1505-&gt;199|1518-&gt;204|1558-&gt;224|1685-&gt;325|1698-&gt;330|1733-&gt;345|1779-&gt;364|1793-&gt;369|1827-&gt;382|1906-&gt;435|1920-&gt;441|2003-&gt;503|2033-&gt;506|2047-&gt;511|2088-&gt;531|2163-&gt;579|2177-&gt;584|2217-&gt;603|2269-&gt;625|2302-&gt;628
+&nbsp;                  LINES: 27-&gt;1|32-&gt;1|34-&gt;3|34-&gt;3|34-&gt;3|35-&gt;4|35-&gt;4|35-&gt;4|36-&gt;5|36-&gt;5|36-&gt;5|37-&gt;6|38-&gt;7|38-&gt;7|38-&gt;7|39-&gt;8|39-&gt;8|39-&gt;8|39-&gt;8|39-&gt;8|39-&gt;8|40-&gt;9|40-&gt;9|40-&gt;9|40-&gt;9|40-&gt;9|40-&gt;9|41-&gt;10|41-&gt;10|41-&gt;10|44-&gt;13|45-&gt;14
+&nbsp;                  -- GENERATED --
+&nbsp;              */
+&nbsp;          
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

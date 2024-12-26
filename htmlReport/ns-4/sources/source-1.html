@@ -1,0 +1,385 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Routes</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">router</a>
+</div>
+
+<h1>Coverage Summary for Class: Routes (router)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Routes</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/23)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/72)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/115)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Routes$$anonfun$routes$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/58)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/22)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/29)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/130)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/137)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;// @GENERATOR:play-routes-compiler
+&nbsp;// @SOURCE:conf/routes
+&nbsp;
+&nbsp;package router
+&nbsp;
+&nbsp;import play.core.routing._
+&nbsp;import play.core.routing.HandlerInvokerFactory._
+&nbsp;
+&nbsp;import play.api.mvc._
+&nbsp;
+&nbsp;import _root_.controllers.Assets.Asset
+&nbsp;import _root_.play.libs.F
+&nbsp;
+&nbsp;class Routes(
+<b class="nc">&nbsp;  override val errorHandler: play.api.http.HttpErrorHandler, </b>
+&nbsp;  // @LINE:6
+<b class="nc">&nbsp;  YouTubeController_0: controllers.YouTubeController,</b>
+&nbsp;  // @LINE:12
+<b class="nc">&nbsp;  Assets_1: controllers.Assets,</b>
+<b class="nc">&nbsp;  val prefix: String</b>
+<b class="nc">&nbsp;) extends GeneratedRouter {</b>
+&nbsp;
+&nbsp;  @javax.inject.Inject()
+&nbsp;  def this(errorHandler: play.api.http.HttpErrorHandler,
+&nbsp;    // @LINE:6
+&nbsp;    YouTubeController_0: controllers.YouTubeController,
+&nbsp;    // @LINE:12
+&nbsp;    Assets_1: controllers.Assets
+<b class="nc">&nbsp;  ) = this(errorHandler, YouTubeController_0, Assets_1, &quot;/&quot;)</b>
+&nbsp;
+&nbsp;  def withPrefix(addPrefix: String): Routes = {
+<b class="nc">&nbsp;    val prefix = play.api.routing.Router.concatPrefix(addPrefix, this.prefix)</b>
+<b class="nc">&nbsp;    router.RoutesPrefix.setPrefix(prefix)</b>
+<b class="nc">&nbsp;    new Routes(errorHandler, YouTubeController_0, Assets_1, prefix)</b>
+&nbsp;  }
+&nbsp;
+<b class="nc">&nbsp;  private val defaultPrefix: String = {</b>
+<b class="nc">&nbsp;    if (this.prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;</b>
+&nbsp;  }
+&nbsp;
+<b class="nc">&nbsp;  def documentation = List(</b>
+<b class="nc">&nbsp;    (&quot;&quot;&quot;GET&quot;&quot;&quot;, this.prefix, &quot;&quot;&quot;controllers.YouTubeController.search()&quot;&quot;&quot;),</b>
+<b class="nc">&nbsp;    (&quot;&quot;&quot;GET&quot;&quot;&quot;, this.prefix + (if(this.prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;) + &quot;&quot;&quot;ws&quot;&quot;&quot;, &quot;&quot;&quot;controllers.YouTubeController.ws()&quot;&quot;&quot;),</b>
+<b class="nc">&nbsp;    (&quot;&quot;&quot;GET&quot;&quot;&quot;, this.prefix + (if(this.prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;) + &quot;&quot;&quot;assets/&quot;&quot;&quot; + &quot;$&quot; + &quot;&quot;&quot;file&lt;.+&gt;&quot;&quot;&quot;, &quot;&quot;&quot;controllers.Assets.versioned(path:String = &quot;/public&quot;, file:Asset)&quot;&quot;&quot;),</b>
+<b class="nc">&nbsp;    (&quot;&quot;&quot;GET&quot;&quot;&quot;, this.prefix + (if(this.prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;) + &quot;&quot;&quot;tag/&quot;&quot;&quot; + &quot;$&quot; + &quot;&quot;&quot;tagName&lt;[^/]+&gt;&quot;&quot;&quot;, &quot;&quot;&quot;controllers.YouTubeController.getTagPage(tagName:String)&quot;&quot;&quot;),</b>
+<b class="nc">&nbsp;    (&quot;&quot;&quot;GET&quot;&quot;&quot;, this.prefix + (if(this.prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;) + &quot;&quot;&quot;tag/videos/&quot;&quot;&quot; + &quot;$&quot; + &quot;&quot;&quot;tagName&lt;[^/]+&gt;&quot;&quot;&quot;, &quot;&quot;&quot;controllers.YouTubeController.getVideosByTag(tagName:String)&quot;&quot;&quot;),</b>
+<b class="nc">&nbsp;    (&quot;&quot;&quot;GET&quot;&quot;&quot;, this.prefix + (if(this.prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;) + &quot;&quot;&quot;channel/&quot;&quot;&quot; + &quot;$&quot; + &quot;&quot;&quot;channelId&lt;[^/]+&gt;&quot;&quot;&quot;, &quot;&quot;&quot;controllers.YouTubeController.fetchChannelProfile(channelId:String)&quot;&quot;&quot;),</b>
+<b class="nc">&nbsp;    (&quot;&quot;&quot;GET&quot;&quot;&quot;, this.prefix + (if(this.prefix.endsWith(&quot;/&quot;)) &quot;&quot; else &quot;/&quot;) + &quot;&quot;&quot;wordStats/&quot;&quot;&quot; + &quot;$&quot; + &quot;&quot;&quot;query&lt;[^/]+&gt;&quot;&quot;&quot;, &quot;&quot;&quot;controllers.YouTubeController.getWordStats(query:String)&quot;&quot;&quot;),</b>
+<b class="nc">&nbsp;    Nil</b>
+<b class="nc">&nbsp;  ).foldLeft(Seq.empty[(String, String, String)]) { (s,e) =&gt; e.asInstanceOf[Any] match {</b>
+<b class="nc">&nbsp;    case r @ (_,_,_) =&gt; s :+ r.asInstanceOf[(String, String, String)]</b>
+<b class="nc">&nbsp;    case l =&gt; s ++ l.asInstanceOf[List[(String, String, String)]]</b>
+&nbsp;  }}
+&nbsp;
+&nbsp;
+&nbsp;  // @LINE:6
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_search0_route = Route(&quot;GET&quot;,</b>
+<b class="nc">&nbsp;    PathPattern(List(StaticPart(this.prefix)))</b>
+&nbsp;  )
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_search0_invoker = createInvoker(</b>
+<b class="nc">&nbsp;    YouTubeController_0.search(),</b>
+<b class="nc">&nbsp;    play.api.routing.HandlerDef(this.getClass.getClassLoader,</b>
+<b class="nc">&nbsp;      &quot;router&quot;,</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController&quot;,</b>
+<b class="nc">&nbsp;      &quot;search&quot;,</b>
+<b class="nc">&nbsp;      Nil,</b>
+<b class="nc">&nbsp;      &quot;GET&quot;,</b>
+<b class="nc">&nbsp;      this.prefix + &quot;&quot;&quot;&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot; Route for rendering the search page&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      Seq()</b>
+&nbsp;    )
+&nbsp;  )
+&nbsp;
+&nbsp;  // @LINE:9
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_ws1_route = Route(&quot;GET&quot;,</b>
+<b class="nc">&nbsp;    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart(&quot;ws&quot;)))</b>
+&nbsp;  )
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_ws1_invoker = createInvoker(</b>
+<b class="nc">&nbsp;    YouTubeController_0.ws(),</b>
+<b class="nc">&nbsp;    play.api.routing.HandlerDef(this.getClass.getClassLoader,</b>
+<b class="nc">&nbsp;      &quot;router&quot;,</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController&quot;,</b>
+<b class="nc">&nbsp;      &quot;ws&quot;,</b>
+<b class="nc">&nbsp;      Nil,</b>
+<b class="nc">&nbsp;      &quot;GET&quot;,</b>
+<b class="nc">&nbsp;      this.prefix + &quot;&quot;&quot;ws&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot; WebSocket endpoint for real-time updates&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      Seq()</b>
+&nbsp;    )
+&nbsp;  )
+&nbsp;
+&nbsp;  // @LINE:12
+<b class="nc">&nbsp;  private lazy val controllers_Assets_versioned2_route = Route(&quot;GET&quot;,</b>
+<b class="nc">&nbsp;    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart(&quot;assets/&quot;), DynamicPart(&quot;file&quot;, &quot;&quot;&quot;.+&quot;&quot;&quot;, encodeable=false)))</b>
+&nbsp;  )
+<b class="nc">&nbsp;  private lazy val controllers_Assets_versioned2_invoker = createInvoker(</b>
+<b class="nc">&nbsp;    Assets_1.versioned(fakeValue[String], fakeValue[Asset]),</b>
+<b class="nc">&nbsp;    play.api.routing.HandlerDef(this.getClass.getClassLoader,</b>
+<b class="nc">&nbsp;      &quot;router&quot;,</b>
+<b class="nc">&nbsp;      &quot;controllers.Assets&quot;,</b>
+<b class="nc">&nbsp;      &quot;versioned&quot;,</b>
+<b class="nc">&nbsp;      Seq(classOf[String], classOf[Asset]),</b>
+<b class="nc">&nbsp;      &quot;GET&quot;,</b>
+<b class="nc">&nbsp;      this.prefix + &quot;&quot;&quot;assets/&quot;&quot;&quot; + &quot;$&quot; + &quot;&quot;&quot;file&lt;.+&gt;&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot; Map static resources from the /public folder to the /assets URL path&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      Seq()</b>
+&nbsp;    )
+&nbsp;  )
+&nbsp;
+&nbsp;  // @LINE:15
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_getTagPage3_route = Route(&quot;GET&quot;,</b>
+<b class="nc">&nbsp;    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart(&quot;tag/&quot;), DynamicPart(&quot;tagName&quot;, &quot;&quot;&quot;[^/]+&quot;&quot;&quot;, encodeable=true)))</b>
+&nbsp;  )
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_getTagPage3_invoker = createInvoker(</b>
+<b class="nc">&nbsp;    YouTubeController_0.getTagPage(fakeValue[String]),</b>
+<b class="nc">&nbsp;    play.api.routing.HandlerDef(this.getClass.getClassLoader,</b>
+<b class="nc">&nbsp;      &quot;router&quot;,</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController&quot;,</b>
+<b class="nc">&nbsp;      &quot;getTagPage&quot;,</b>
+<b class="nc">&nbsp;      Seq(classOf[String]),</b>
+<b class="nc">&nbsp;      &quot;GET&quot;,</b>
+<b class="nc">&nbsp;      this.prefix + &quot;&quot;&quot;tag/&quot;&quot;&quot; + &quot;$&quot; + &quot;&quot;&quot;tagName&lt;[^/]+&gt;&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot; Routes for tag-related functionalities&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      Seq()</b>
+&nbsp;    )
+&nbsp;  )
+&nbsp;
+&nbsp;  // @LINE:16
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_getVideosByTag4_route = Route(&quot;GET&quot;,</b>
+<b class="nc">&nbsp;    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart(&quot;tag/videos/&quot;), DynamicPart(&quot;tagName&quot;, &quot;&quot;&quot;[^/]+&quot;&quot;&quot;, encodeable=true)))</b>
+&nbsp;  )
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_getVideosByTag4_invoker = createInvoker(</b>
+<b class="nc">&nbsp;    YouTubeController_0.getVideosByTag(fakeValue[String]),</b>
+<b class="nc">&nbsp;    play.api.routing.HandlerDef(this.getClass.getClassLoader,</b>
+<b class="nc">&nbsp;      &quot;router&quot;,</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController&quot;,</b>
+<b class="nc">&nbsp;      &quot;getVideosByTag&quot;,</b>
+<b class="nc">&nbsp;      Seq(classOf[String]),</b>
+<b class="nc">&nbsp;      &quot;GET&quot;,</b>
+<b class="nc">&nbsp;      this.prefix + &quot;&quot;&quot;tag/videos/&quot;&quot;&quot; + &quot;$&quot; + &quot;&quot;&quot;tagName&lt;[^/]+&gt;&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot;&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      Seq()</b>
+&nbsp;    )
+&nbsp;  )
+&nbsp;
+&nbsp;  // @LINE:19
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_fetchChannelProfile5_route = Route(&quot;GET&quot;,</b>
+<b class="nc">&nbsp;    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart(&quot;channel/&quot;), DynamicPart(&quot;channelId&quot;, &quot;&quot;&quot;[^/]+&quot;&quot;&quot;, encodeable=true)))</b>
+&nbsp;  )
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_fetchChannelProfile5_invoker = createInvoker(</b>
+<b class="nc">&nbsp;    YouTubeController_0.fetchChannelProfile(fakeValue[String]),</b>
+<b class="nc">&nbsp;    play.api.routing.HandlerDef(this.getClass.getClassLoader,</b>
+<b class="nc">&nbsp;      &quot;router&quot;,</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController&quot;,</b>
+<b class="nc">&nbsp;      &quot;fetchChannelProfile&quot;,</b>
+<b class="nc">&nbsp;      Seq(classOf[String]),</b>
+<b class="nc">&nbsp;      &quot;GET&quot;,</b>
+<b class="nc">&nbsp;      this.prefix + &quot;&quot;&quot;channel/&quot;&quot;&quot; + &quot;$&quot; + &quot;&quot;&quot;channelId&lt;[^/]+&gt;&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot; Route for fetching the channel profile&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      Seq()</b>
+&nbsp;    )
+&nbsp;  )
+&nbsp;
+&nbsp;  // @LINE:21
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_getWordStats6_route = Route(&quot;GET&quot;,</b>
+<b class="nc">&nbsp;    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart(&quot;wordStats/&quot;), DynamicPart(&quot;query&quot;, &quot;&quot;&quot;[^/]+&quot;&quot;&quot;, encodeable=true)))</b>
+&nbsp;  )
+<b class="nc">&nbsp;  private lazy val controllers_YouTubeController_getWordStats6_invoker = createInvoker(</b>
+<b class="nc">&nbsp;    YouTubeController_0.getWordStats(fakeValue[String]),</b>
+<b class="nc">&nbsp;    play.api.routing.HandlerDef(this.getClass.getClassLoader,</b>
+<b class="nc">&nbsp;      &quot;router&quot;,</b>
+<b class="nc">&nbsp;      &quot;controllers.YouTubeController&quot;,</b>
+<b class="nc">&nbsp;      &quot;getWordStats&quot;,</b>
+<b class="nc">&nbsp;      Seq(classOf[String]),</b>
+<b class="nc">&nbsp;      &quot;GET&quot;,</b>
+<b class="nc">&nbsp;      this.prefix + &quot;&quot;&quot;wordStats/&quot;&quot;&quot; + &quot;$&quot; + &quot;&quot;&quot;query&lt;[^/]+&gt;&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      &quot;&quot;&quot;&quot;&quot;&quot;,</b>
+<b class="nc">&nbsp;      Seq()</b>
+&nbsp;    )
+&nbsp;  )
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;  def routes: PartialFunction[RequestHeader, Handler] = {</b>
+&nbsp;  
+&nbsp;    // @LINE:6
+<b class="nc">&nbsp;    case controllers_YouTubeController_search0_route(params@_) =&gt;</b>
+<b class="nc">&nbsp;      call { </b>
+<b class="nc">&nbsp;        controllers_YouTubeController_search0_invoker.call(YouTubeController_0.search())</b>
+&nbsp;      }
+&nbsp;  
+&nbsp;    // @LINE:9
+<b class="nc">&nbsp;    case controllers_YouTubeController_ws1_route(params@_) =&gt;</b>
+<b class="nc">&nbsp;      call { </b>
+<b class="nc">&nbsp;        controllers_YouTubeController_ws1_invoker.call(YouTubeController_0.ws())</b>
+&nbsp;      }
+&nbsp;  
+&nbsp;    // @LINE:12
+<b class="nc">&nbsp;    case controllers_Assets_versioned2_route(params@_) =&gt;</b>
+<b class="nc">&nbsp;      call(Param[String](&quot;path&quot;, Right(&quot;/public&quot;)), params.fromPath[Asset](&quot;file&quot;, None)) { (path, file) =&gt;</b>
+<b class="nc">&nbsp;        controllers_Assets_versioned2_invoker.call(Assets_1.versioned(path, file))</b>
+&nbsp;      }
+&nbsp;  
+&nbsp;    // @LINE:15
+<b class="nc">&nbsp;    case controllers_YouTubeController_getTagPage3_route(params@_) =&gt;</b>
+<b class="nc">&nbsp;      call(params.fromPath[String](&quot;tagName&quot;, None)) { (tagName) =&gt;</b>
+<b class="nc">&nbsp;        controllers_YouTubeController_getTagPage3_invoker.call(YouTubeController_0.getTagPage(tagName))</b>
+&nbsp;      }
+&nbsp;  
+&nbsp;    // @LINE:16
+<b class="nc">&nbsp;    case controllers_YouTubeController_getVideosByTag4_route(params@_) =&gt;</b>
+<b class="nc">&nbsp;      call(params.fromPath[String](&quot;tagName&quot;, None)) { (tagName) =&gt;</b>
+<b class="nc">&nbsp;        controllers_YouTubeController_getVideosByTag4_invoker.call(YouTubeController_0.getVideosByTag(tagName))</b>
+&nbsp;      }
+&nbsp;  
+&nbsp;    // @LINE:19
+<b class="nc">&nbsp;    case controllers_YouTubeController_fetchChannelProfile5_route(params@_) =&gt;</b>
+<b class="nc">&nbsp;      call(params.fromPath[String](&quot;channelId&quot;, None)) { (channelId) =&gt;</b>
+<b class="nc">&nbsp;        controllers_YouTubeController_fetchChannelProfile5_invoker.call(YouTubeController_0.fetchChannelProfile(channelId))</b>
+&nbsp;      }
+&nbsp;  
+&nbsp;    // @LINE:21
+<b class="nc">&nbsp;    case controllers_YouTubeController_getWordStats6_route(params@_) =&gt;</b>
+<b class="nc">&nbsp;      call(params.fromPath[String](&quot;query&quot;, None)) { (query) =&gt;</b>
+<b class="nc">&nbsp;        controllers_YouTubeController_getWordStats6_invoker.call(YouTubeController_0.getWordStats(query))</b>
+&nbsp;      }
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

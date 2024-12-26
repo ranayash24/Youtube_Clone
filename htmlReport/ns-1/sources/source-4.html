@@ -1,0 +1,215 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > TagActor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">actors</a>
+</div>
+
+<h1>Coverage Summary for Class: TagActor (actors)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TagActor</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TagActor$TagRequest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">TagActor$TagResponse</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package actors;
+&nbsp;
+&nbsp;import akka.actor.AbstractActor;
+&nbsp;import akka.actor.Props;
+&nbsp;
+<b class="fc">&nbsp;public class TagActor extends AbstractActor {</b>
+&nbsp;
+&nbsp;    public static Props props() {
+<b class="fc">&nbsp;        return Props.create(TagActor.class);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Messages
+&nbsp;    public static class TagRequest {
+&nbsp;        public final String tagName;
+&nbsp;
+<b class="fc">&nbsp;        public TagRequest(String tagName) {</b>
+<b class="fc">&nbsp;            this.tagName = tagName;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public static class TagResponse {
+&nbsp;        public final String tagName;
+&nbsp;        public final int videoCount;
+&nbsp;        public final String errorMessage;
+&nbsp;
+<b class="fc">&nbsp;        public TagResponse(String tagName, int videoCount, String errorMessage) {</b>
+<b class="fc">&nbsp;            this.tagName = tagName;</b>
+<b class="fc">&nbsp;            this.videoCount = videoCount;</b>
+<b class="fc">&nbsp;            this.errorMessage = errorMessage;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Receive createReceive() {
+<b class="fc">&nbsp;        return receiveBuilder()</b>
+<b class="fc">&nbsp;                .match(TagRequest.class, request -&gt; {</b>
+<b class="pc">&nbsp;                    if (request.tagName == null || request.tagName.isEmpty()) {</b>
+<b class="fc">&nbsp;                        getSender().tell(new TagResponse(null, 0, &quot;Invalid tag name&quot;), getSelf());</b>
+&nbsp;                    } else {
+&nbsp;                        // Mock response for testing
+<b class="fc">&nbsp;                        getSender().tell(new TagResponse(request.tagName, 10, null), getSelf());</b>
+&nbsp;                    }
+&nbsp;                })
+<b class="fc">&nbsp;                .build();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>

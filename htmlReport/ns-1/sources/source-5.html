@@ -1,0 +1,509 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > UserActor</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">actors</a>
+</div>
+
+<h1>Coverage Summary for Class: UserActor (actors)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserActor</td>
+<td class="coverageStat">
+  <span class="percent">
+    90.5%
+  </span>
+  <span class="absValue">
+    (19/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (18/24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.7%
+  </span>
+  <span class="absValue">
+    (107/113)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">UserActor$SearchWrapper</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">UserActor$TagDetailsRequest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    91.3%
+  </span>
+  <span class="absValue">
+    (21/23)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (18/24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.9%
+  </span>
+  <span class="absValue">
+    (112/118)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package actors;
+&nbsp;
+&nbsp;import akka.actor.AbstractActor;
+&nbsp;import akka.actor.ActorRef;
+&nbsp;import akka.actor.Props;
+&nbsp;import akka.actor.Terminated;
+&nbsp;import com.fasterxml.jackson.databind.JsonNode;
+&nbsp;import com.fasterxml.jackson.databind.node.ArrayNode;
+&nbsp;import com.fasterxml.jackson.databind.node.ObjectNode;
+&nbsp;import play.libs.Json;
+&nbsp;import services.YouTubeService;
+&nbsp;import utils.ReadabilityScoreUtil;
+&nbsp;import utils.ReadabilityScores;
+&nbsp;import utils.SentimentAnalyser;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;import java.util.concurrent.CompletableFuture;
+&nbsp;import java.util.stream.Collectors;
+&nbsp;
+&nbsp;/**
+&nbsp; * Actor responsible for managing WebSocket interactions, YouTube searches,
+&nbsp; * sentiment analysis, tag-related requests, and channel profile requests.
+&nbsp; */
+&nbsp;public class UserActor extends AbstractActor {
+&nbsp;
+&nbsp;    private final ActorRef webSocket;
+&nbsp;    private final YouTubeService youTubeService;
+<b class="fc">&nbsp;    private final Map&lt;String, ActorRef&gt; youtubeSearchActors = new HashMap&lt;&gt;();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructs a {@code UserActor} instance.
+&nbsp;     *
+&nbsp;     * @param webSocket      the WebSocket connection associated with this actor
+&nbsp;     * @param youTubeService the service used for interacting with the YouTube API
+&nbsp;     */
+<b class="fc">&nbsp;    public UserActor(ActorRef webSocket, YouTubeService youTubeService) {</b>
+<b class="fc">&nbsp;        this.webSocket = webSocket;</b>
+<b class="fc">&nbsp;        this.youTubeService = youTubeService;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a {@link Props} instance for the {@code UserActor}.
+&nbsp;     *
+&nbsp;     * @param ws             the WebSocket connection
+&nbsp;     * @param youTubeService the service for interacting with the YouTube API
+&nbsp;     * @return a {@link Props} instance for creating {@code UserActor} instances
+&nbsp;     */
+&nbsp;    public static Props props(final ActorRef ws, YouTubeService youTubeService) {
+<b class="fc">&nbsp;        return Props.create(UserActor.class, ws, youTubeService);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Receive createReceive() {
+<b class="fc">&nbsp;        return receiveBuilder()</b>
+<b class="fc">&nbsp;                .match(JsonNode.class, this::handleWebSocketCommand)</b>
+<b class="fc">&nbsp;                .match(SearchWrapper.class, this::handleSearchResults)</b>
+<b class="fc">&nbsp;                .match(SentimentActor.SentimentResponse.class, this::handleSentimentResults)</b>
+<b class="fc">&nbsp;                .match(ChannelProfileActor.ChannelProfileResponse.class, this::handleChannelProfileResults)</b>
+<b class="fc">&nbsp;                .match(ReadabilityScoreActor.ScoreResponse.class, this::handleScoreResults)</b>
+<b class="fc">&nbsp;                .match(Terminated.class, this::handleActorTermination)</b>
+<b class="fc">&nbsp;                .match(TagDetailsRequest.class, this::handleTagDetails)</b>
+<b class="fc">&nbsp;                .build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles incoming WebSocket commands.
+&nbsp;     *
+&nbsp;     * @param message the incoming WebSocket message in JSON format
+&nbsp;     */
+&nbsp;    private void handleWebSocketCommand(JsonNode message) {
+<b class="fc">&nbsp;        if (message.isObject() &amp;&amp; message.has(&quot;action&quot;)) {</b>
+<b class="fc">&nbsp;            String action = message.get(&quot;action&quot;).asText();</b>
+&nbsp;
+<b class="fc">&nbsp;            switch (action) {</b>
+&nbsp;                case &quot;search&quot;:
+<b class="fc">&nbsp;                    handleSearchCommand(message);</b>
+&nbsp;                    break;
+&nbsp;                case &quot;getVideoDetails&quot;:
+<b class="fc">&nbsp;                    String videoId = message.get(&quot;videoId&quot;).asText();</b>
+<b class="fc">&nbsp;                    ActorRef videoDetailsActor = getContext().actorOf(VideoDetailsActor.props(youTubeService));</b>
+<b class="fc">&nbsp;                    videoDetailsActor.tell(new VideoDetailsActor.FetchVideoDetails(videoId), self());</b>
+&nbsp;                    break;
+&nbsp;                case &quot;getChannelProfile&quot;:
+<b class="fc">&nbsp;                    String channelId = message.get(&quot;channelId&quot;).asText();</b>
+<b class="fc">&nbsp;                    handleChannelProfileCommand(channelId);</b>
+&nbsp;                    break;
+&nbsp;                case &quot;getTagDetails&quot;:
+<b class="fc">&nbsp;                    String tag = message.get(&quot;tag&quot;).asText();</b>
+<b class="fc">&nbsp;                    self().tell(new TagDetailsRequest(tag), self());</b>
+&nbsp;                    break;
+&nbsp;                default:
+<b class="fc">&nbsp;                    System.err.println(&quot;Unknown WebSocket action: &quot; + action);</b>
+&nbsp;            }
+&nbsp;        } else {
+<b class="fc">&nbsp;            System.err.println(&quot;Invalid WebSocket command: &quot; + message.toString());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the &quot;search&quot; WebSocket command to fetch results.
+&nbsp;     *
+&nbsp;     * @param message the WebSocket message containing the search query
+&nbsp;     */
+&nbsp;    private void handleSearchCommand(JsonNode message) {
+<b class="fc">&nbsp;        String query = message.get(&quot;query&quot;).asText();</b>
+<b class="fc">&nbsp;        CompletableFuture&lt;List&lt;Map&lt;String, String&gt;&gt;&gt; futureResults = youTubeService.searchVideosAsync(query);</b>
+<b class="fc">&nbsp;        self().tell(new SearchWrapper(query, futureResults), self());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the &quot;getChannelProfile&quot; WebSocket command.
+&nbsp;     *
+&nbsp;     * @param channelId the ID of the channel to fetch the profile for
+&nbsp;     */
+&nbsp;    private void handleChannelProfileCommand(String channelId) {
+<b class="fc">&nbsp;        ActorRef channelProfileActor = getContext().actorOf(ChannelProfileActor.props(youTubeService));</b>
+<b class="fc">&nbsp;        channelProfileActor.tell(new ChannelProfileActor.FetchChannelProfile(channelId), self());</b>
+<b class="fc">&nbsp;        getContext().watch(channelProfileActor);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private void sendResultsToClient(List&lt;Map&lt;String, String&gt;&gt; results) {
+<b class="fc">&nbsp;        JsonNode jsonResults = formatResultsAsJson(results);</b>
+<b class="fc">&nbsp;        webSocket.tell(jsonResults, self());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the results of a YouTube search.
+&nbsp;     *
+&nbsp;     * @param wrapper the wrapper containing the search query and results
+&nbsp;     */
+&nbsp;    private void handleSearchResults(SearchWrapper wrapper) {
+<b class="fc">&nbsp;        wrapper.futureResults.thenAcceptAsync(results -&gt; {</b>
+<b class="pc">&nbsp;            if (results != null &amp;&amp; !results.isEmpty()) {</b>
+&nbsp;
+<b class="fc">&nbsp;                List&lt;String&gt; descriptions = results.stream()</b>
+<b class="fc">&nbsp;                        .map(result -&gt; result.get(&quot;description&quot;))</b>
+<b class="pc">&nbsp;                        .filter(description -&gt; description != null &amp;&amp; !description.isEmpty())</b>
+<b class="fc">&nbsp;                        .collect(Collectors.toList());</b>
+&nbsp;
+<b class="pc">&nbsp;                if (!descriptions.isEmpty()) {</b>
+<b class="fc">&nbsp;                    ActorRef sentimentActor = getContext().actorOf(SentimentActor.props(new SentimentAnalyser(), self()));</b>
+<b class="fc">&nbsp;                    sentimentActor.tell(new SentimentActor.SentimentRequest(wrapper.query, descriptions), self());</b>
+&nbsp;
+<b class="fc">&nbsp;                    ActorRef readabilityScoreActor = getContext().actorOf(ReadabilityScoreActor.props(new ReadabilityScoreUtil(), self()));</b>
+<b class="fc">&nbsp;                    readabilityScoreActor.tell(new ReadabilityScoreActor.ScoreRequest(wrapper.query, descriptions), self());</b>
+&nbsp;
+<b class="fc">&nbsp;                    ActorRef wordStatActor = getContext().actorOf(WordStatActor.props(self()));</b>
+<b class="fc">&nbsp;                    wordStatActor.tell(new WordStatActor.WordStatRequest(wrapper.query, descriptions), self());</b>
+&nbsp;
+<b class="fc">&nbsp;                    Map&lt;String, Object&gt; aggregatedData = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;                    aggregatedData.put(&quot;results&quot;, results);</b>
+<b class="fc">&nbsp;                    aggregatedData.put(&quot;scoresPending&quot;, 2); // Two responses are awaited: scores and word stats</b>
+&nbsp;
+<b class="fc">&nbsp;                    getContext().become(receiveBuilder()</b>
+<b class="fc">&nbsp;                            .match(SentimentActor.SentimentResponse.class, this::handleSentimentResults)</b>
+<b class="fc">&nbsp;                            .match(ReadabilityScoreActor.ScoreResponse.class, scoreResponse -&gt; {</b>
+<b class="fc">&nbsp;                                List&lt;Map&lt;String, String&gt;&gt; resultList = (List&lt;Map&lt;String, String&gt;&gt;) aggregatedData.get(&quot;results&quot;);</b>
+<b class="fc">&nbsp;                                mergeScoresWithResults(resultList, scoreResponse.scores);</b>
+&nbsp;
+<b class="fc">&nbsp;                                double overallGradeLevel = scoreResponse.getOverallGradeLevel();</b>
+<b class="fc">&nbsp;                                double overallEaseScore = scoreResponse.getOverallEaseScore();</b>
+&nbsp;
+<b class="fc">&nbsp;                                Map&lt;String, String&gt; overallScoresEntry = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;                                overallScoresEntry.put(&quot;overallGradeLevel&quot;, String.valueOf(overallGradeLevel));</b>
+<b class="fc">&nbsp;                                overallScoresEntry.put(&quot;overallEaseScore&quot;, String.valueOf(overallEaseScore));</b>
+<b class="fc">&nbsp;                                resultList.add(0, overallScoresEntry);</b>
+&nbsp;
+<b class="fc">&nbsp;                                decrementPendingCountAndCheck(aggregatedData);</b>
+&nbsp;                            })
+<b class="fc">&nbsp;                            .match(WordStatActor.WordStatResponse.class, wordStatResponse -&gt; {</b>
+<b class="fc">&nbsp;                                List&lt;Map&lt;String, String&gt;&gt; resultList = (List&lt;Map&lt;String, String&gt;&gt;) aggregatedData.get(&quot;results&quot;);</b>
+&nbsp;
+&nbsp;                                // Merge the word stats only once
+<b class="fc">&nbsp;                                mergeWordStatsWithResults(resultList, wordStatResponse.wordStats);</b>
+&nbsp;
+<b class="fc">&nbsp;                                decrementPendingCountAndCheck(aggregatedData);</b>
+&nbsp;                            })
+<b class="fc">&nbsp;                            .matchAny(o -&gt; System.err.println(&quot;Unexpected message while waiting for responses: &quot; + o))</b>
+<b class="fc">&nbsp;                            .build(), true);</b>
+&nbsp;                }
+&nbsp;            } else {
+<b class="fc">&nbsp;                ObjectNode emptyResponse = Json.newObject();</b>
+<b class="fc">&nbsp;                emptyResponse.put(&quot;query&quot;, wrapper.query);</b>
+<b class="fc">&nbsp;                emptyResponse.put(&quot;message&quot;, &quot;No results found.&quot;);</b>
+<b class="fc">&nbsp;                webSocket.tell(emptyResponse, self());</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Merges the readability scores into the results list.
+&nbsp;     *
+&nbsp;     * @param results the list of video metadata
+&nbsp;     * @param scores  the list of readability scores
+&nbsp;     */
+&nbsp;    private void mergeScoresWithResults(List&lt;Map&lt;String, String&gt;&gt; results, List&lt;ReadabilityScores&gt; scores) {
+<b class="pc">&nbsp;        for (int i = 0; i &lt; results.size() &amp;&amp; i &lt; scores.size(); i++) {</b>
+<b class="fc">&nbsp;            Map&lt;String, String&gt; result = results.get(i);</b>
+<b class="fc">&nbsp;            ReadabilityScores score = scores.get(i);</b>
+&nbsp;
+<b class="fc">&nbsp;            result.put(&quot;gradeLevel&quot;, String.valueOf(score.getGradeLevel()));</b>
+<b class="fc">&nbsp;            result.put(&quot;readingEaseScore&quot;, String.valueOf(score.getReadingEase()));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private void mergeWordStatsWithResults(List&lt;Map&lt;String, String&gt;&gt; results, Map&lt;String, Long&gt; wordStats) {
+<b class="fc">&nbsp;        Map&lt;String, String&gt; wordStatsEntry = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        wordStatsEntry.put(&quot;wordStats&quot;, wordStats.toString());</b>
+&nbsp;
+&nbsp;        // Add word stats as a standalone entry
+<b class="fc">&nbsp;        results.add(wordStatsEntry);</b>
+&nbsp;
+&nbsp;        // Alternatively, you can attach word stats to the first result only:
+&nbsp;        // if (!results.isEmpty()) {
+&nbsp;        //     results.get(0).put(&quot;wordStats&quot;, wordStats.toString());
+&nbsp;        // }
+&nbsp;    }
+&nbsp;
+&nbsp;    private void decrementPendingCountAndCheck(Map&lt;String, Object&gt; aggregatedData) {
+<b class="fc">&nbsp;        int pendingCount = (int) aggregatedData.get(&quot;scoresPending&quot;);</b>
+<b class="fc">&nbsp;        pendingCount--;</b>
+<b class="fc">&nbsp;        aggregatedData.put(&quot;scoresPending&quot;, pendingCount);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (pendingCount == 0) {</b>
+<b class="fc">&nbsp;            List&lt;Map&lt;String, String&gt;&gt; results = (List&lt;Map&lt;String, String&gt;&gt;) aggregatedData.get(&quot;results&quot;);</b>
+<b class="fc">&nbsp;            sendResultsToClient(results);</b>
+&nbsp;
+<b class="fc">&nbsp;            getContext().unbecome(); // Revert to the original behavior</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the results of fetching a channel profile.
+&nbsp;     *
+&nbsp;     * @param response the response containing the channel profile data or an error
+&nbsp;     */
+&nbsp;    private void handleChannelProfileResults(ChannelProfileActor.ChannelProfileResponse response) {
+<b class="nc">&nbsp;        ObjectNode jsonResponse = Json.newObject();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (response.error != null) {</b>
+<b class="nc">&nbsp;            jsonResponse.put(&quot;error&quot;, response.error);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            jsonResponse.set(&quot;profileData&quot;, response.profileData);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        webSocket.tell(jsonResponse, self());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles tag-related requests and sends the tag back to the client.
+&nbsp;     *
+&nbsp;     * @param request the tag details request
+&nbsp;     */
+&nbsp;    private void handleTagDetails(TagDetailsRequest request) {
+<b class="fc">&nbsp;        webSocket.tell(&quot;You clicked on the tag: &quot; + request.tag, self());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void handleScoreResults(ReadabilityScoreActor.ScoreResponse response) {
+&nbsp;        // Create a JSON object for the response
+<b class="fc">&nbsp;        ObjectNode jsonResponse = Json.newObject();</b>
+<b class="fc">&nbsp;        jsonResponse.put(&quot;query&quot;, response.query);</b>
+&nbsp;
+&nbsp;        // Handle list of readability scores
+<b class="fc">&nbsp;        ArrayNode scoresArray = Json.newArray();</b>
+<b class="fc">&nbsp;        response.scores.forEach(score -&gt; {</b>
+<b class="fc">&nbsp;            ObjectNode scoreObject = Json.newObject();</b>
+<b class="fc">&nbsp;            scoreObject.put(&quot;gradeLevel&quot;, score.getGradeLevel());</b>
+<b class="fc">&nbsp;            scoreObject.put(&quot;readingEaseScore&quot;, score.getReadingEase());</b>
+<b class="fc">&nbsp;            scoresArray.add(scoreObject);</b>
+&nbsp;        });
+<b class="fc">&nbsp;        jsonResponse.set(&quot;scores&quot;, scoresArray);</b>
+&nbsp;
+&nbsp;        // Send the JSON response via the WebSocket
+<b class="fc">&nbsp;        webSocket.tell(jsonResponse, self());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the results of sentiment analysis.
+&nbsp;     *
+&nbsp;     * @param response the sentiment analysis results
+&nbsp;     */
+&nbsp;    private void handleSentimentResults(SentimentActor.SentimentResponse response) {
+<b class="fc">&nbsp;        ObjectNode jsonResponse = Json.newObject();</b>
+<b class="fc">&nbsp;        jsonResponse.put(&quot;query&quot;, response.query);</b>
+<b class="fc">&nbsp;        jsonResponse.put(&quot;overallSentiment&quot;, response.overallSentiment);</b>
+&nbsp;
+<b class="fc">&nbsp;        ArrayNode sentimentsArray = Json.newArray();</b>
+<b class="fc">&nbsp;        response.sentiments.forEach(sentimentsArray::add);</b>
+<b class="fc">&nbsp;        jsonResponse.set(&quot;sentiments&quot;, sentimentsArray);</b>
+&nbsp;
+<b class="fc">&nbsp;        webSocket.tell(jsonResponse, self());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Handles the termination of child actors.
+&nbsp;     *
+&nbsp;     * @param terminated the terminated actor reference
+&nbsp;     */
+&nbsp;    private void handleActorTermination(Terminated terminated) {
+<b class="nc">&nbsp;        youtubeSearchActors.values().remove(terminated.actor());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Converts a list of video metadata maps into a JSON array for communication with the WebSocket client.
+&nbsp;     *
+&nbsp;     * @param results the list of video metadata
+&nbsp;     * @return a JSON array
+&nbsp;     */
+&nbsp;    private JsonNode formatResultsAsJson(List&lt;Map&lt;String, String&gt;&gt; results) {
+<b class="fc">&nbsp;        return Json.toJson(results);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Custom message class for associating tags with their request.
+&nbsp;     */
+&nbsp;    public static class TagDetailsRequest {
+&nbsp;        public final String tag;
+&nbsp;
+<b class="fc">&nbsp;        public TagDetailsRequest(String tag) {</b>
+<b class="fc">&nbsp;            this.tag = tag;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Wrapper class to associate a search query with its corresponding CompletableFuture results.
+&nbsp;     */
+&nbsp;    static class SearchWrapper {
+&nbsp;        final String query;
+&nbsp;        final CompletableFuture&lt;List&lt;Map&lt;String, String&gt;&gt;&gt; futureResults;
+&nbsp;
+<b class="fc">&nbsp;        public SearchWrapper(String query, CompletableFuture&lt;List&lt;Map&lt;String, String&gt;&gt;&gt; futureResults) {</b>
+<b class="fc">&nbsp;            this.query = query;</b>
+<b class="fc">&nbsp;            this.futureResults = futureResults;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-01 23:33</div>
+</div>
+</body>
+</html>
